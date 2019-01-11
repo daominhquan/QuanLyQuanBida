@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d76e7fd6db3c4b53a5df52b7df5aba3a" Name="Diagram1">
+        <EntityTypeShape EntityType="CodeFirstDBModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CodeFirstDBModel.Account" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CodeFirstDBModel.BanBida" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="CodeFirstDBModel.ChiTietHoaDonBan" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="CodeFirstDBModel.HoaDonBan" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="CodeFirstDBModel.SanPham" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="CodeFirstDBModel.sysdiagram" Width="1.5" PointX="7.75" PointY="3.75" />
+        <AssociationConnector Association="CodeFirstDBModel.FK_HoaDonBan_BanBida" />
+        <AssociationConnector Association="CodeFirstDBModel.FK_ChiTietHoaDonBan_HoaDonBan" />
+        <AssociationConnector Association="CodeFirstDBModel.FK_ChiTietHoaDonBan_SanPhams" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

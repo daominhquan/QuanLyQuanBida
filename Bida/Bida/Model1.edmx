@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CodeFirstDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BanBida">
+          <Key>
+            <PropertyRef Name="BanBidaId" />
+          </Key>
+          <Property Name="BanBidaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenBanBida" Type="nvarchar(max)" />
+          <Property Name="TinhTrang" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ChiTietHoaDonBan">
+          <Key>
+            <PropertyRef Name="ChiTietHoaDonBanId" />
+          </Key>
+          <Property Name="ChiTietHoaDonBanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdHoaDonBan" Type="int" />
+          <Property Name="IdSanPham" Type="int" />
+          <Property Name="Soluong" Type="int" />
+        </EntityType>
+        <EntityType Name="HoaDonBan">
+          <Key>
+            <PropertyRef Name="HoaDonBanId" />
+          </Key>
+          <Property Name="HoaDonBanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idBanbida" Type="int" />
+          <Property Name="TongTien" Type="float" />
+          <Property Name="NgayBan" Type="datetime" />
+          <Property Name="TienGio" Type="float" />
+          <Property Name="TinhTrang" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SanPhams">
+          <Key>
+            <PropertyRef Name="SanPhamId" />
+          </Key>
+          <Property Name="SanPhamId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenSanPham" Type="nvarchar(max)" />
+          <Property Name="GiaTien" Type="nchar" MaxLength="10" />
+          <Property Name="Soluong" Type="int" />
+          <Property Name="HinhAnh" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_ChiTietHoaDonBan_HoaDonBan">
+          <End Role="HoaDonBan" Type="Self.HoaDonBan" Multiplicity="0..1" />
+          <End Role="ChiTietHoaDonBan" Type="Self.ChiTietHoaDonBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDonBan">
+              <PropertyRef Name="HoaDonBanId" />
+            </Principal>
+            <Dependent Role="ChiTietHoaDonBan">
+              <PropertyRef Name="IdHoaDonBan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietHoaDonBan_SanPhams">
+          <End Role="SanPhams" Type="Self.SanPhams" Multiplicity="0..1" />
+          <End Role="ChiTietHoaDonBan" Type="Self.ChiTietHoaDonBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhams">
+              <PropertyRef Name="SanPhamId" />
+            </Principal>
+            <Dependent Role="ChiTietHoaDonBan">
+              <PropertyRef Name="IdSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoaDonBan_BanBida">
+          <End Role="BanBida" Type="Self.BanBida" Multiplicity="0..1" />
+          <End Role="HoaDonBan" Type="Self.HoaDonBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BanBida">
+              <PropertyRef Name="BanBidaId" />
+            </Principal>
+            <Dependent Role="HoaDonBan">
+              <PropertyRef Name="idBanbida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="CodeFirstDBModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BanBida" EntityType="Self.BanBida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChiTietHoaDonBan" EntityType="Self.ChiTietHoaDonBan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HoaDonBan" EntityType="Self.HoaDonBan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SanPhams" EntityType="Self.SanPhams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ChiTietHoaDonBan_HoaDonBan" Association="Self.FK_ChiTietHoaDonBan_HoaDonBan">
+            <End Role="HoaDonBan" EntitySet="HoaDonBan" />
+            <End Role="ChiTietHoaDonBan" EntitySet="ChiTietHoaDonBan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietHoaDonBan_SanPhams" Association="Self.FK_ChiTietHoaDonBan_SanPhams">
+            <End Role="SanPhams" EntitySet="SanPhams" />
+            <End Role="ChiTietHoaDonBan" EntitySet="ChiTietHoaDonBan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoaDonBan_BanBida" Association="Self.FK_HoaDonBan_BanBida">
+            <End Role="BanBida" EntitySet="BanBida" />
+            <End Role="HoaDonBan" EntitySet="HoaDonBan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CodeFirstDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CodeFirstDBEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CodeFirstDBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CodeFirstDBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="C__MigrationHistory" EntityType="CodeFirstDBModel.C__MigrationHistory" />
+          <EntitySet Name="Accounts" EntityType="CodeFirstDBModel.Account" />
+          <EntitySet Name="BanBidas" EntityType="CodeFirstDBModel.BanBida" />
+          <EntitySet Name="ChiTietHoaDonBans" EntityType="CodeFirstDBModel.ChiTietHoaDonBan" />
+          <EntitySet Name="HoaDonBans" EntityType="CodeFirstDBModel.HoaDonBan" />
+          <EntitySet Name="SanPhams" EntityType="CodeFirstDBModel.SanPham" />
+          <EntitySet Name="sysdiagrams" EntityType="CodeFirstDBModel.sysdiagram" />
+          <AssociationSet Name="FK_HoaDonBan_BanBida" Association="CodeFirstDBModel.FK_HoaDonBan_BanBida">
+            <End Role="BanBida" EntitySet="BanBidas" />
+            <End Role="HoaDonBan" EntitySet="HoaDonBans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietHoaDonBan_HoaDonBan" Association="CodeFirstDBModel.FK_ChiTietHoaDonBan_HoaDonBan">
+            <End Role="HoaDonBan" EntitySet="HoaDonBans" />
+            <End Role="ChiTietHoaDonBan" EntitySet="ChiTietHoaDonBans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietHoaDonBan_SanPhams" Association="CodeFirstDBModel.FK_ChiTietHoaDonBan_SanPhams">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="ChiTietHoaDonBan" EntitySet="ChiTietHoaDonBans" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BanBida">
+          <Key>
+            <PropertyRef Name="BanBidaId" />
+          </Key>
+          <Property Name="BanBidaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenBanBida" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TinhTrang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HoaDonBans" Relationship="CodeFirstDBModel.FK_HoaDonBan_BanBida" FromRole="BanBida" ToRole="HoaDonBan" />
+        </EntityType>
+        <EntityType Name="ChiTietHoaDonBan">
+          <Key>
+            <PropertyRef Name="ChiTietHoaDonBanId" />
+          </Key>
+          <Property Name="ChiTietHoaDonBanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdHoaDonBan" Type="Int32" />
+          <Property Name="IdSanPham" Type="Int32" />
+          <Property Name="Soluong" Type="Int32" />
+          <NavigationProperty Name="HoaDonBan" Relationship="CodeFirstDBModel.FK_ChiTietHoaDonBan_HoaDonBan" FromRole="ChiTietHoaDonBan" ToRole="HoaDonBan" />
+          <NavigationProperty Name="SanPham" Relationship="CodeFirstDBModel.FK_ChiTietHoaDonBan_SanPhams" FromRole="ChiTietHoaDonBan" ToRole="SanPham" />
+        </EntityType>
+        <EntityType Name="HoaDonBan">
+          <Key>
+            <PropertyRef Name="HoaDonBanId" />
+          </Key>
+          <Property Name="HoaDonBanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idBanbida" Type="Int32" />
+          <Property Name="TongTien" Type="Double" />
+          <Property Name="NgayBan" Type="DateTime" Precision="3" />
+          <Property Name="TienGio" Type="Double" />
+          <Property Name="TinhTrang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BanBida" Relationship="CodeFirstDBModel.FK_HoaDonBan_BanBida" FromRole="HoaDonBan" ToRole="BanBida" />
+          <NavigationProperty Name="ChiTietHoaDonBans" Relationship="CodeFirstDBModel.FK_ChiTietHoaDonBan_HoaDonBan" FromRole="HoaDonBan" ToRole="ChiTietHoaDonBan" />
+        </EntityType>
+        <EntityType Name="SanPham">
+          <Key>
+            <PropertyRef Name="SanPhamId" />
+          </Key>
+          <Property Name="SanPhamId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GiaTien" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Soluong" Type="Int32" />
+          <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ChiTietHoaDonBans" Relationship="CodeFirstDBModel.FK_ChiTietHoaDonBan_SanPhams" FromRole="SanPham" ToRole="ChiTietHoaDonBan" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_HoaDonBan_BanBida">
+          <End Type="CodeFirstDBModel.BanBida" Role="BanBida" Multiplicity="0..1" />
+          <End Type="CodeFirstDBModel.HoaDonBan" Role="HoaDonBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BanBida">
+              <PropertyRef Name="BanBidaId" />
+            </Principal>
+            <Dependent Role="HoaDonBan">
+              <PropertyRef Name="idBanbida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietHoaDonBan_HoaDonBan">
+          <End Type="CodeFirstDBModel.HoaDonBan" Role="HoaDonBan" Multiplicity="0..1" />
+          <End Type="CodeFirstDBModel.ChiTietHoaDonBan" Role="ChiTietHoaDonBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDonBan">
+              <PropertyRef Name="HoaDonBanId" />
+            </Principal>
+            <Dependent Role="ChiTietHoaDonBan">
+              <PropertyRef Name="IdHoaDonBan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietHoaDonBan_SanPhams">
+          <End Type="CodeFirstDBModel.SanPham" Role="SanPham" Multiplicity="0..1" />
+          <End Type="CodeFirstDBModel.ChiTietHoaDonBan" Role="ChiTietHoaDonBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="SanPhamId" />
+            </Principal>
+            <Dependent Role="ChiTietHoaDonBan">
+              <PropertyRef Name="IdSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CodeFirstDBModelStoreContainer" CdmEntityContainer="CodeFirstDBEntities">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="CodeFirstDBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="CodeFirstDBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="CodeFirstDBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="CodeFirstDBModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CodeFirstDBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="CodeFirstDBModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CodeFirstDBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CodeFirstDBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CodeFirstDBModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="CodeFirstDBModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="CodeFirstDBModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BanBidas">
+            <EntityTypeMapping TypeName="CodeFirstDBModel.BanBida">
+              <MappingFragment StoreEntitySet="BanBida">
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="TenBanBida" ColumnName="TenBanBida" />
+                <ScalarProperty Name="BanBidaId" ColumnName="BanBidaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChiTietHoaDonBans">
+            <EntityTypeMapping TypeName="CodeFirstDBModel.ChiTietHoaDonBan">
+              <MappingFragment StoreEntitySet="ChiTietHoaDonBan">
+                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+                <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
+                <ScalarProperty Name="IdHoaDonBan" ColumnName="IdHoaDonBan" />
+                <ScalarProperty Name="ChiTietHoaDonBanId" ColumnName="ChiTietHoaDonBanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoaDonBans">
+            <EntityTypeMapping TypeName="CodeFirstDBModel.HoaDonBan">
+              <MappingFragment StoreEntitySet="HoaDonBan">
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="TienGio" ColumnName="TienGio" />
+                <ScalarProperty Name="NgayBan" ColumnName="NgayBan" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="idBanbida" ColumnName="idBanbida" />
+                <ScalarProperty Name="HoaDonBanId" ColumnName="HoaDonBanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SanPhams">
+            <EntityTypeMapping TypeName="CodeFirstDBModel.SanPham">
+              <MappingFragment StoreEntitySet="SanPhams">
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+                <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
+                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="SanPhamId" ColumnName="SanPhamId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CodeFirstDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
