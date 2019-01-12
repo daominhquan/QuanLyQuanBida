@@ -49,7 +49,7 @@ namespace Bida
         }
         public void LoadDanhSachBan()
         {
-            panel1.Controls.Clear();
+            panelDanhSachBan.Controls.Clear();
             int top = 40;
             int left = 10;
             int index = 0;
@@ -71,7 +71,30 @@ namespace Bida
                         if(hoadon.idBanbida==item.BanBidaId&&hoadon.TinhTrang=="đang hoạt động")
                         {
                             double sophut = Math.Round((DateTime.Now - hoadon.NgayBan).Value.TotalMinutes);
-                            newButton.Text = item.TenBanBida + Environment.NewLine +sophut.ToString() +" phút";
+                            int sogio = 0;
+                            string thoigian = "";
+                            if (sophut >= 60)
+                            {
+                                sogio = (int)(sophut/60);
+                                sophut = sophut- sogio * 60;
+                            }
+                            if (sogio < 10 && sophut<10)
+                            {
+                                thoigian = "0" + sogio.ToString() + ":0" + sophut.ToString();
+                            }
+                            else if(sophut < 10)
+                            {
+                                thoigian = sogio.ToString() + ":0" + sophut.ToString();
+                            }
+                            else if (sogio < 10)
+                            {
+                                thoigian = "0" + sogio.ToString() + ":" + sophut.ToString();
+                            }
+                            else
+                            {
+                                thoigian = sogio.ToString() + ":" + sophut.ToString();
+                            }
+                            newButton.Text = item.TenBanBida +  Environment.NewLine +thoigian ;
                             break;
                         }
                     }
@@ -81,6 +104,7 @@ namespace Bida
                     newButton.BackgroundImageLayout = ImageLayout.Zoom;
                     newButton.ForeColor= newButton.BackColor = Color.Transparent;
                     newButton.FlatStyle = FlatStyle.Flat;
+                    newButton.FlatAppearance.BorderSize = 0;
 
                 }
                 else
@@ -91,6 +115,7 @@ namespace Bida
                     newButton.BackgroundImageLayout = ImageLayout.Zoom;
                     newButton.ForeColor = newButton.BackColor = Color.Transparent;
                     newButton.FlatStyle = FlatStyle.Flat;
+                    newButton.FlatAppearance.BorderSize = 0;
                 }
                 newButton.Click += btnBan_Click;
                 index++;
@@ -100,13 +125,15 @@ namespace Bida
                     top = top + 170;
                     left = 10;
                 }
-                panel1.Controls.Add(newButton);
+                panelDanhSachBan.Controls.Add(newButton);
             }
-            panel1.AutoScroll = false;
-            panel1.HorizontalScroll.Enabled = false;
-            panel1.HorizontalScroll.Visible = false;
-            panel1.HorizontalScroll.Maximum = 0;
-            panel1.AutoScroll = true;
+            if(selectedBan!=null)
+            selectedBan.BackColor = Color.Blue;
+            panelDanhSachBan.AutoScroll = false;
+            panelDanhSachBan.HorizontalScroll.Enabled = false;
+            panelDanhSachBan.HorizontalScroll.Visible = false;
+            panelDanhSachBan.HorizontalScroll.Maximum = 0;
+            panelDanhSachBan.AutoScroll = true;
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -162,12 +189,15 @@ namespace Bida
                     Image myimage = new Bitmap(item.HinhAnh);//tạo biến lưu lại hình ảnh bởi đường dẫn
                     newButton.BackgroundImage = myimage;//đổi ảnh nền của button 
                     newButton.BackgroundImageLayout = ImageLayout.Zoom;
+                    Bitmap bm = (Bitmap)newButton.BackgroundImage;
+                    bm.MakeTransparent(bm.GetPixel(0, 0));
                 }
-                newButton.BackColor = Color.White;
+                //newButton.BackColor = Color.White;
                 newButton.ForeColor = Color.Black;
                 newButton.FlatStyle = FlatStyle.Flat;
+                newButton.FlatAppearance.BorderSize = 0;
                 newButton.Click += btnSanPham_Click;
-
+                
                 index++;
                 left = left + 100;
                 //if (index % 5 == 0)
@@ -189,6 +219,8 @@ namespace Bida
             panelSanPham.HorizontalScroll.Maximum = 0;
             panelSanPham.AutoScroll = true;
         }
+
+
         public void UpdateTongCongHoaDon()
         {
             double tong = 0;
@@ -204,6 +236,7 @@ namespace Bida
                 }
             }
             lbTongtien.Text = tong.ToString();
+            labelTongCong.Text = string.Format("{0:#,##0}", int.Parse(lbTongtien.Text));
         }
         private void btnThemSanPham_Click(object sender, EventArgs e)
         {
@@ -215,7 +248,7 @@ namespace Bida
         {
             Button btn = sender as Button;
             selectedBan = btn;
-            foreach(Button item in panel1.Controls)
+            foreach (Button item in panelDanhSachBan.Controls)
             {
                 if (item.BackColor == SystemColors.Highlight)
                 {
@@ -229,6 +262,9 @@ namespace Bida
         }
         private void btnSanPham_Click(object sender, EventArgs e)
         {
+
+
+
             Button btn = sender as Button;
             btnSuaSanPham.Enabled = true;
             selectedSanPham = btn;
@@ -240,6 +276,9 @@ namespace Bida
                 }
             }
             btn.BackColor = SystemColors.Highlight;
+
+
+
             int id = int.Parse(btn.Name.Split('_')[2]);
             SanPham sp = db.SanPhams.Find(id);
             int index = 0;
@@ -264,7 +303,7 @@ namespace Bida
             }
             if (sp.GiaTien != "" && sp.GiaTien != null)
             {
-                datagrid_hoadonban.Rows.Add(sp.SanPhamId, sp.TenSanPham, 1, sp.GiaTien, sp.GiaTien);
+                datagrid_hoadonban.Rows.Add(sp.SanPhamId, sp.TenSanPham, 1, sp.GiaTien, sp.GiaTien, string.Format("{0:#,##0}", int.Parse(sp.GiaTien)));
             }
             else
             {
@@ -423,7 +462,13 @@ namespace Bida
             {
                 LoadDanhSachSanPham();
             }
-            else { LoadDanhSachSanPham(); }
+            else
+            {
+                if (panelSanPham.Size.Width % 10 == 0)
+                {
+                    LoadDanhSachSanPham();
+                }
+            }
         }
 
         private void btnThanhToan_Click(object sender, EventArgs e)

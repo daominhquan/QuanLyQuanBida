@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelDanhSachBan = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -50,6 +50,7 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.btnSuaSanPham = new System.Windows.Forms.Button();
+            this.labelTongCong = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid_hoadonban)).BeginInit();
             this.panel3.SuspendLayout();
@@ -64,13 +65,13 @@
             this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // panelDanhSachBan
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 50);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(304, 728);
-            this.panel1.TabIndex = 0;
+            this.panelDanhSachBan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDanhSachBan.Location = new System.Drawing.Point(0, 50);
+            this.panelDanhSachBan.Name = "panelDanhSachBan";
+            this.panelDanhSachBan.Size = new System.Drawing.Size(304, 728);
+            this.panelDanhSachBan.TabIndex = 0;
             // 
             // button1
             // 
@@ -125,7 +126,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.panel1);
+            this.panel3.Controls.Add(this.panelDanhSachBan);
             this.panel3.Controls.Add(this.panel2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
@@ -212,6 +213,7 @@
             // 
             // panel12
             // 
+            this.panel12.Controls.Add(this.labelTongCong);
             this.panel12.Controls.Add(this.btnThanhToan);
             this.panel12.Controls.Add(this.lbTongtien);
             this.panel12.Controls.Add(this.btnLuuHoaDon);
@@ -224,8 +226,8 @@
             // 
             // btnThanhToan
             // 
-            this.btnThanhToan.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnThanhToan.Location = new System.Drawing.Point(219, 0);
+            this.btnThanhToan.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnThanhToan.Location = new System.Drawing.Point(92, 0);
             this.btnThanhToan.Name = "btnThanhToan";
             this.btnThanhToan.Size = new System.Drawing.Size(92, 47);
             this.btnThanhToan.TabIndex = 9;
@@ -236,16 +238,17 @@
             // lbTongtien
             // 
             this.lbTongtien.AutoSize = true;
-            this.lbTongtien.Location = new System.Drawing.Point(71, 17);
+            this.lbTongtien.Location = new System.Drawing.Point(387, 3);
             this.lbTongtien.Name = "lbTongtien";
-            this.lbTongtien.Size = new System.Drawing.Size(23, 13);
+            this.lbTongtien.Size = new System.Drawing.Size(13, 13);
             this.lbTongtien.TabIndex = 11;
-            this.lbTongtien.Text = "0 đ";
+            this.lbTongtien.Text = "0";
+            this.lbTongtien.Visible = false;
             // 
             // btnLuuHoaDon
             // 
-            this.btnLuuHoaDon.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnLuuHoaDon.Location = new System.Drawing.Point(311, 0);
+            this.btnLuuHoaDon.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnLuuHoaDon.Location = new System.Drawing.Point(0, 0);
             this.btnLuuHoaDon.Name = "btnLuuHoaDon";
             this.btnLuuHoaDon.Size = new System.Drawing.Size(92, 47);
             this.btnLuuHoaDon.TabIndex = 8;
@@ -256,7 +259,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 17);
+            this.label1.Location = new System.Drawing.Point(228, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 10;
@@ -295,6 +298,15 @@
             this.btnSuaSanPham.UseVisualStyleBackColor = true;
             this.btnSuaSanPham.Click += new System.EventHandler(this.button3_Click);
             // 
+            // labelTongCong
+            // 
+            this.labelTongCong.AutoSize = true;
+            this.labelTongCong.Location = new System.Drawing.Point(293, 3);
+            this.labelTongCong.Name = "labelTongCong";
+            this.labelTongCong.Size = new System.Drawing.Size(13, 13);
+            this.labelTongCong.TabIndex = 12;
+            this.labelTongCong.Text = "0";
+            // 
             // FormDanhSachBan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -325,7 +337,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelDanhSachBan;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel2;
@@ -347,5 +359,6 @@
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Label labelTongCong;
     }
 }
