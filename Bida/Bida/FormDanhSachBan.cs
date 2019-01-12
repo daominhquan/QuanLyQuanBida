@@ -18,11 +18,14 @@ namespace Bida
         public static int idsanpham;
         public static Button selectedSanPham;
         private static Button selectedBan;
-
+        Timer timer = new Timer();
+        
         public FormDanhSachBan()
         {
-
             InitializeComponent();
+            timer.Interval = 60000;
+            timer.Tick += timer_Tick;
+            timer.Enabled = true;
             LoadDanhSachBan();
             LoadDanhSachSanPham();
             datagrid_hoadonban.ColumnCount = 5;
@@ -45,6 +48,8 @@ namespace Bida
             int index = 0;
             foreach (var item in db.BanBidas)
             {
+                
+
                 Button newButton = new Button();
                 newButton.Text = item.TenBanBida;
                 newButton.Size = new Size(75, 27);
@@ -54,11 +59,22 @@ namespace Bida
 
                 if (item.TinhTrang == "đang hoạt động")
                 {
+                    foreach(HoaDonBan hoadon in db.HoaDonBans)
+                    {
+                        if(hoadon.idBanbida==item.BanBidaId&&hoadon.TinhTrang=="đang hoạt động")
+                        {
+                            double sophut = Math.Round((DateTime.Now - hoadon.NgayBan).Value.TotalMinutes);
+                            newButton.Text = item.TenBanBida + Environment.NewLine +sophut.ToString() +" phút";
+                            break;
+                        }
+                    }
                     string startupPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Picture\\dacokhach.png";
                     Image myimage = new Bitmap(startupPath);//tạo biến lưu lại hình ảnh bởi đường dẫn
                     newButton.BackgroundImage = myimage;//đổi ảnh nền của button 
                     newButton.BackgroundImageLayout = ImageLayout.Zoom;
-                    newButton.ForeColor = System.Drawing.Color.White;
+                    newButton.ForeColor= newButton.BackColor = Color.Transparent;
+                    newButton.FlatStyle = FlatStyle.Flat;
+
                 }
                 else
                 {
@@ -66,7 +82,8 @@ namespace Bida
                     Image myimage = new Bitmap(startupPath);//tạo biến lưu lại hình ảnh bởi đường dẫn
                     newButton.BackgroundImage = myimage;//đổi ảnh nền của button 
                     newButton.BackgroundImageLayout = ImageLayout.Zoom;
-                    newButton.ForeColor = System.Drawing.Color.White;
+                    newButton.ForeColor = newButton.BackColor = Color.Transparent;
+                    newButton.FlatStyle = FlatStyle.Flat;
                 }
                 newButton.Click += btnBan_Click;
                 index++;
@@ -84,6 +101,12 @@ namespace Bida
             panel1.HorizontalScroll.Maximum = 0;
             panel1.AutoScroll = true;
         }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            LoadDanhSachBan();
+        }
+
         public void loadDuLieuBanLenHoaDon(int id)
         {
             datagrid_hoadonban.Rows.Clear();
@@ -121,8 +144,11 @@ namespace Bida
                     newButton.BackgroundImage = myimage;//đổi ảnh nền của button 
                     newButton.BackgroundImageLayout = ImageLayout.Zoom;
                 }
-                newButton.BackColor= SystemColors.Control;
+                newButton.BackColor = Color.White;
+                newButton.ForeColor = Color.Black;
+                newButton.FlatStyle = FlatStyle.Flat;
                 newButton.Click += btnSanPham_Click;
+
                 index++;
                 left = left + 100;
                 //if (index % 5 == 0)

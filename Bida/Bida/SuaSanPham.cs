@@ -102,7 +102,7 @@ namespace Bida
                         pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
                         pictureBox1.Size = new Size(90, 90);
                         pictureBox1.Text = startupPath;
-                        MessageBox.Show("đã lưu hình ảnh vào kho hình thành công");
+                        //MessageBox.Show("đã lưu hình ảnh vào kho hình thành công");
                         txtUrlHinh.Text = startupPath + Path.GetFileName(filePath);
                     }
                     else//nếu file đã tồn tại trong thư mục Picture mở hộp thoại thông báo    
@@ -112,7 +112,7 @@ namespace Bida
                         pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
                         pictureBox1.Size = new Size(90, 90);
                         pictureBox1.Text = startupPath;
-                        MessageBox.Show("đã tồn tại , chương trình sẽ sử dụng hình ảnh có tên tương tự");
+                        //MessageBox.Show("đã tồn tại , chương trình sẽ sử dụng hình ảnh có tên tương tự");
                         txtUrlHinh.Text = startupPath + Path.GetFileName(filePath);
                     }
 
