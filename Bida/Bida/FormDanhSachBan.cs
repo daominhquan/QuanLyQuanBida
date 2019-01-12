@@ -28,9 +28,10 @@ namespace Bida
             timer.Enabled = true;
             LoadDanhSachBan();
             LoadDanhSachSanPham();
-            datagrid_hoadonban.ColumnCount = 5;
+            datagrid_hoadonban.ColumnCount = 6;
             datagrid_hoadonban.Columns[0].Name = "ID";
             datagrid_hoadonban.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            datagrid_hoadonban.Columns[0].Visible = false;
             datagrid_hoadonban.Columns[1].Name = "Tên Sản phẩm";
             datagrid_hoadonban.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             datagrid_hoadonban.Columns[2].Name = "Số lượng";
@@ -39,6 +40,12 @@ namespace Bida
             datagrid_hoadonban.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             datagrid_hoadonban.Columns[4].Name = "Tổng";
             datagrid_hoadonban.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            datagrid_hoadonban.Columns[4].Visible = false;
+            datagrid_hoadonban.Columns[5].Name = "Tổng cộng";
+
+
+            datagrid_hoadonban.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
         }
         public void LoadDanhSachBan()
         {
@@ -113,13 +120,25 @@ namespace Bida
             int index = 0;
             foreach (var item in db.ChiTietHoaDonBans)
             {
+                if (item.HoaDonBan.idBanbida == id && item.HoaDonBan.TinhTrang == "đang hoạt động")
+                {
+                    double sophut = Math.Round((DateTime.Now - item.HoaDonBan.NgayBan).Value.TotalMinutes);
+                    datagrid_hoadonban.Rows.Add("", "Tiền giờ", sophut, (25000 / 60), Math.Round(sophut * (25000 / 60) / 1000) * 1000, string.Format("{0:#,##0}", Math.Round(sophut * (25000 / 60) / 1000) * 1000));
+                    UpdateTongCongHoaDon();
+                    break;
+                }
+            }
+            foreach (var item in db.ChiTietHoaDonBans)
+            {
                 if (item.HoaDonBan.idBanbida == id && item.HoaDonBan.TinhTrang=="đang hoạt động")
                 {
-                    datagrid_hoadonban.Rows.Add(item.IdSanPham, item.SanPham.TenSanPham, item.Soluong, item.SanPham.GiaTien, item.Soluong.Value* int.Parse(item.SanPham.GiaTien));
-
+                    datagrid_hoadonban.Rows.Add(item.IdSanPham, item.SanPham.TenSanPham, item.Soluong, item.SanPham.GiaTien, item.Soluong.Value* int.Parse(item.SanPham.GiaTien), string.Format("{0:#,##0}", item.Soluong.Value * int.Parse(item.SanPham.GiaTien)));
                     index++;
                 }
             }
+            UpdateTongCongHoaDon();
+            
+
         }
 
         public void LoadDanhSachSanPham()
@@ -205,7 +224,8 @@ namespace Bida
             }
             btn.BackColor = SystemColors.Highlight;
             loadDuLieuBanLenHoaDon(int.Parse(btn.Name.Split('_')[2]));
-            UpdateTongCongHoaDon();
+            panelMain.Visible = true;
+            //UpdateTongCongHoaDon();
         }
         private void btnSanPham_Click(object sender, EventArgs e)
         {
@@ -233,6 +253,8 @@ namespace Bida
                         if (sp.GiaTien != "" && sp.GiaTien != null)
                         {
                             row.Cells["Tổng"].Value = int.Parse(row.Cells["Số lượng"].Value.ToString()) * int.Parse(sp.GiaTien);
+                            row.Cells["Tổng cộng"].Value = string.Format("{0:#,##0}", int.Parse(row.Cells["Số lượng"].Value.ToString()) * int.Parse(sp.GiaTien));
+
                         }
                         UpdateTongCongHoaDon();
                         return;
@@ -355,8 +377,9 @@ namespace Bida
                 }
                 foreach (DataGridViewRow row in datagrid_hoadonban.Rows)
                 {
+                    if(row.Cells["Tên sản phẩm"].Value.ToString()=="Tiền giờ"){}
                     //nếu sản phẩm chưa có
-                    if (index>=list.Count())
+                    else if (index>=list.Count())
                     {
                         ChiTietHoaDonBan chitiet = new ChiTietHoaDonBan();
                         chitiet.IdSanPham = int.Parse(row.Cells["ID"].Value.ToString());
@@ -417,6 +440,7 @@ namespace Bida
                 {
                     HoaDonBan hoadon = item;
                     hoadon.TinhTrang = "đã thanh toán";
+                    hoadon.TienGio = (DateTime.Now - hoadon.NgayBan).Value.TotalMinutes * (25000 / 60);
                     hoadon.TongTien = int.Parse(lbTongtien.Text);
                     db.Entry(hoadon).State = EntityState.Modified;
 

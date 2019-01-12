@@ -35,11 +35,11 @@
             this.datagrid_hoadonban = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panelSanPham = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panelMain = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
+            this.panelHoaDon = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
@@ -53,11 +53,11 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid_hoadonban)).BeginInit();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.panelMain.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel10.SuspendLayout();
-            this.panel8.SuspendLayout();
+            this.panelHoaDon.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -81,6 +81,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "thêm 1 bàn";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
@@ -92,6 +93,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "xóa 1 bàn";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel2
@@ -140,14 +142,15 @@
             this.panelSanPham.TabIndex = 7;
             this.panelSanPham.SizeChanged += new System.EventHandler(this.panelSanPham_SizeChanged);
             // 
-            // panel4
+            // panelMain
             // 
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(304, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(980, 778);
-            this.panel4.TabIndex = 6;
+            this.panelMain.Controls.Add(this.panel5);
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Location = new System.Drawing.Point(304, 0);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(980, 778);
+            this.panelMain.TabIndex = 6;
+            this.panelMain.Visible = false;
             // 
             // panel5
             // 
@@ -163,7 +166,7 @@
             // 
             this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel6.Controls.Add(this.panel10);
-            this.panel6.Controls.Add(this.panel8);
+            this.panel6.Controls.Add(this.panelHoaDon);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 50);
             this.panel6.Name = "panel6";
@@ -179,15 +182,15 @@
             this.panel10.Size = new System.Drawing.Size(577, 728);
             this.panel10.TabIndex = 8;
             // 
-            // panel8
+            // panelHoaDon
             // 
-            this.panel8.Controls.Add(this.panel11);
-            this.panel8.Controls.Add(this.panel9);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(577, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(403, 728);
-            this.panel8.TabIndex = 6;
+            this.panelHoaDon.Controls.Add(this.panel11);
+            this.panelHoaDon.Controls.Add(this.panel9);
+            this.panelHoaDon.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelHoaDon.Location = new System.Drawing.Point(577, 0);
+            this.panelHoaDon.Name = "panelHoaDon";
+            this.panelHoaDon.Size = new System.Drawing.Size(403, 728);
+            this.panelHoaDon.TabIndex = 6;
             // 
             // panel11
             // 
@@ -297,7 +300,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 778);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panel3);
             this.Name = "FormDanhSachBan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -306,11 +309,11 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datagrid_hoadonban)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
+            this.panelMain.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
+            this.panelHoaDon.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
@@ -329,13 +332,13 @@
         private System.Windows.Forms.DataGridView datagrid_hoadonban;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panelSanPham;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Button btnSuaSanPham;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panelHoaDon;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Button btnThanhToan;
         private System.Windows.Forms.Button btnLuuHoaDon;
