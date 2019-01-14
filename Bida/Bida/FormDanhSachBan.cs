@@ -19,7 +19,7 @@ namespace Bida
         public static Button selectedSanPham;
         private static Button selectedBan;
         Timer timer = new Timer();
-        
+
         public FormDanhSachBan()
         {
             InitializeComponent();
@@ -55,7 +55,7 @@ namespace Bida
             int index = 0;
             foreach (var item in db.BanBidas)
             {
-                
+
 
                 Button newButton = new Button();
                 newButton.Text = item.TenBanBida;
@@ -66,23 +66,23 @@ namespace Bida
 
                 if (item.TinhTrang == "đang hoạt động")
                 {
-                    foreach(HoaDonBan hoadon in db.HoaDonBans)
+                    foreach (HoaDonBan hoadon in db.HoaDonBans)
                     {
-                        if(hoadon.idBanbida==item.BanBidaId&&hoadon.TinhTrang=="đang hoạt động")
+                        if (hoadon.idBanbida == item.BanBidaId && hoadon.TinhTrang == "đang hoạt động")
                         {
                             double sophut = Math.Round((DateTime.Now - hoadon.NgayBan).Value.TotalMinutes);
                             int sogio = 0;
                             string thoigian = "";
                             if (sophut >= 60)
                             {
-                                sogio = (int)(sophut/60);
-                                sophut = sophut- sogio * 60;
+                                sogio = (int)(sophut / 60);
+                                sophut = sophut - sogio * 60;
                             }
-                            if (sogio < 10 && sophut<10)
+                            if (sogio < 10 && sophut < 10)
                             {
                                 thoigian = "0" + sogio.ToString() + ":0" + sophut.ToString();
                             }
-                            else if(sophut < 10)
+                            else if (sophut < 10)
                             {
                                 thoigian = sogio.ToString() + ":0" + sophut.ToString();
                             }
@@ -94,7 +94,7 @@ namespace Bida
                             {
                                 thoigian = sogio.ToString() + ":" + sophut.ToString();
                             }
-                            newButton.Text = item.TenBanBida +  Environment.NewLine +thoigian ;
+                            newButton.Text = item.TenBanBida + " " + Environment.NewLine + thoigian;
                             break;
                         }
                     }
@@ -102,7 +102,7 @@ namespace Bida
                     Image myimage = new Bitmap(startupPath);//tạo biến lưu lại hình ảnh bởi đường dẫn
                     newButton.BackgroundImage = myimage;//đổi ảnh nền của button 
                     newButton.BackgroundImageLayout = ImageLayout.Zoom;
-                    newButton.ForeColor= newButton.BackColor = Color.Transparent;
+                    newButton.ForeColor = newButton.BackColor = Color.Transparent;
                     newButton.FlatStyle = FlatStyle.Flat;
                     newButton.FlatAppearance.BorderSize = 0;
 
@@ -127,8 +127,8 @@ namespace Bida
                 }
                 panelDanhSachBan.Controls.Add(newButton);
             }
-            if(selectedBan!=null)
-            selectedBan.BackColor = Color.Blue;
+            if (selectedBan != null)
+                selectedBan.BackColor = Color.Blue;
             panelDanhSachBan.AutoScroll = false;
             panelDanhSachBan.HorizontalScroll.Enabled = false;
             panelDanhSachBan.HorizontalScroll.Visible = false;
@@ -145,26 +145,44 @@ namespace Bida
         {
             datagrid_hoadonban.Rows.Clear();
             int index = 0;
+            if (db.BanBidas.Find(id).TinhTrang == "đang hoạt động")
+            {
+                btnThanhToan.Enabled = true;
+                btnLuuHoaDon.Text = "Lưu";
+            }
+            else
+            {
+                btnThanhToan.Enabled = false;
+                btnLuuHoaDon.Text = "Mở Bàn";
+            }
+
+            HoaDonBan hoadon = new HoaDonBan();
+            foreach (var item in db.HoaDonBans)
+            {
+                if (item.idBanbida == id && item.TinhTrang == "đang hoạt động")
+                {
+                    hoadon = item;
+                    break;
+                }
+            }
+            if (db.BanBidas.Find(id).TinhTrang == "đang hoạt động")
+            {
+                double sophut = Math.Round((DateTime.Now - hoadon.NgayBan).Value.TotalMinutes);
+                datagrid_hoadonban.Rows.Add("", "Tiền giờ", sophut, (25000 / 60), Math.Round(sophut * (25000 / 60) / 1000) * 1000, string.Format("{0:#,##0}", Math.Round(sophut * (25000 / 60) / 1000) * 1000));
+                UpdateTongCongHoaDon();
+            }
+
             foreach (var item in db.ChiTietHoaDonBans)
             {
                 if (item.HoaDonBan.idBanbida == id && item.HoaDonBan.TinhTrang == "đang hoạt động")
                 {
-                    double sophut = Math.Round((DateTime.Now - item.HoaDonBan.NgayBan).Value.TotalMinutes);
-                    datagrid_hoadonban.Rows.Add("", "Tiền giờ", sophut, (25000 / 60), Math.Round(sophut * (25000 / 60) / 1000) * 1000, string.Format("{0:#,##0}", Math.Round(sophut * (25000 / 60) / 1000) * 1000));
-                    UpdateTongCongHoaDon();
-                    break;
-                }
-            }
-            foreach (var item in db.ChiTietHoaDonBans)
-            {
-                if (item.HoaDonBan.idBanbida == id && item.HoaDonBan.TinhTrang=="đang hoạt động")
-                {
-                    datagrid_hoadonban.Rows.Add(item.IdSanPham, item.SanPham.TenSanPham, item.Soluong, item.SanPham.GiaTien, item.Soluong.Value* int.Parse(item.SanPham.GiaTien), string.Format("{0:#,##0}", item.Soluong.Value * int.Parse(item.SanPham.GiaTien)));
+                    datagrid_hoadonban.Rows.Add(item.IdSanPham, item.SanPham.TenSanPham, item.Soluong, item.SanPham.GiaTien, item.Soluong.Value * int.Parse(item.SanPham.GiaTien), string.Format("{0:#,##0}", item.Soluong.Value * int.Parse(item.SanPham.GiaTien)));
                     index++;
                 }
             }
+            btnLuuHoaDon.Enabled = true;
             UpdateTongCongHoaDon();
-            
+
 
         }
 
@@ -173,14 +191,15 @@ namespace Bida
             db = new CodeFirstDBEntities();
             panelSanPham.Controls.Clear();
             int top = 40;
-            int left = 10;
+            int left = 0;
             int index = 0;
             foreach (var item in db.SanPhams)
             {
                 Button newButton = new Button();
-                newButton.Text = item.TenSanPham;
+
                 newButton.Size = new Size(75, 27);
                 newButton.Location = new Point(left, top);
+                newButton.Text = item.TenSanPham;
                 newButton.Name = "btn_Ban_" + item.SanPhamId;
                 newButton.Size = new Size(90, 90);
                 if (item.HinhAnh != null && item.HinhAnh != "")
@@ -197,20 +216,19 @@ namespace Bida
                 newButton.FlatStyle = FlatStyle.Flat;
                 newButton.FlatAppearance.BorderSize = 0;
                 newButton.Click += btnSanPham_Click;
-                
+
                 index++;
-                left = left + 100;
+                left = left + 90;
                 //if (index % 5 == 0)
                 //{
                 //    top = top + 100;
                 //    left = 10;
                 //}
-                if (left + 100 > panelSanPham.Size.Width)
+                if (left + 90 >= panelSanPham.Size.Width)
                 {
                     top = top + 100;
-                    left = 10;
+                    left = 0;
                 }
-
                 panelSanPham.Controls.Add(newButton);
             }
             panelSanPham.AutoScroll = false;
@@ -258,7 +276,7 @@ namespace Bida
             btn.BackColor = SystemColors.Highlight;
             loadDuLieuBanLenHoaDon(int.Parse(btn.Name.Split('_')[2]));
             panelMain.Visible = true;
-            //UpdateTongCongHoaDon();
+            lbTenBan.Text = btn.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None)[0];
         }
         private void btnSanPham_Click(object sender, EventArgs e)
         {
@@ -270,7 +288,7 @@ namespace Bida
             selectedSanPham = btn;
             foreach (Button item in panelSanPham.Controls)
             {
-                if(item.BackColor == SystemColors.Highlight)
+                if (item.BackColor == SystemColors.Highlight)
                 {
                     item.BackColor = SystemColors.Control;
                 }
@@ -309,7 +327,7 @@ namespace Bida
             {
                 datagrid_hoadonban.Rows.Add(sp.SanPhamId, sp.TenSanPham, 1, "vui lòng cập nhật giá ?", "vui lòng cập nhật giá ?");
             }
-            
+
             UpdateTongCongHoaDon();
         }
 
@@ -365,6 +383,7 @@ namespace Bida
                 MessageBox.Show("chưa chọn bàn");
                 return;
             }
+
             int idBan = int.Parse(selectedBan.Name.Split('_')[2].ToString());
             HoaDonBan hoadonban = new HoaDonBan();
             bool banDangHoatDong = false;
@@ -416,9 +435,9 @@ namespace Bida
                 }
                 foreach (DataGridViewRow row in datagrid_hoadonban.Rows)
                 {
-                    if(row.Cells["Tên sản phẩm"].Value.ToString()=="Tiền giờ"){}
+                    if (row.Cells["Tên sản phẩm"].Value.ToString() == "Tiền giờ") { }
                     //nếu sản phẩm chưa có
-                    else if (index>=list.Count())
+                    else if (index >= list.Count())
                     {
                         ChiTietHoaDonBan chitiet = new ChiTietHoaDonBan();
                         chitiet.IdSanPham = int.Parse(row.Cells["ID"].Value.ToString());
@@ -430,7 +449,7 @@ namespace Bida
                         {
                             index++;
                         }
-                        
+
                     }
                     else
                     {
@@ -453,7 +472,15 @@ namespace Bida
                 datagrid_hoadonban.Rows.Clear();
                 LoadDanhSachBan();
             }
-
+            thietLapLaiHoaDon();
+        }
+        public void thietLapLaiHoaDon()
+        {
+            datagrid_hoadonban.Rows.Clear();
+            lbTenBan.Text = "";
+            labelTongCong.Text = "";
+            btnLuuHoaDon.Enabled = false;
+            btnThanhToan.Enabled = false;
         }
 
         private void panelSanPham_SizeChanged(object sender, EventArgs e)
@@ -464,7 +491,7 @@ namespace Bida
             }
             else
             {
-                if (panelSanPham.Size.Width % 10 == 0)
+                if (panelSanPham.Size.Width % 45 == 0)
                 {
                     LoadDanhSachSanPham();
                 }
@@ -479,25 +506,60 @@ namespace Bida
                 return;
             }
             int idBan = int.Parse(selectedBan.Name.Split('_')[2].ToString());
-            foreach (var item in db.HoaDonBans)
+            string thongTinHoaDon = "---------------------------------------" + Environment.NewLine;
+            foreach (DataGridViewRow row in datagrid_hoadonban.Rows)
             {
-                if (item.idBanbida == idBan && item.TinhTrang == "đang hoạt động")
-                {
-                    HoaDonBan hoadon = item;
-                    hoadon.TinhTrang = "đã thanh toán";
-                    hoadon.TienGio = (DateTime.Now - hoadon.NgayBan).Value.TotalMinutes * (25000 / 60);
-                    hoadon.TongTien = int.Parse(lbTongtien.Text);
-                    db.Entry(hoadon).State = EntityState.Modified;
-
-                    BanBida banmoi = db.BanBidas.Find(idBan);
-                    banmoi.TinhTrang = "";
-                    db.Entry(banmoi).State = EntityState.Modified;
-                }
+                thongTinHoaDon = thongTinHoaDon + row.Cells["Tên sản phẩm"].Value.ToString() +
+                    " |số lượng: " + row.Cells["Số lượng"].Value.ToString() +
+                    " |Đơn giá: " + row.Cells["Đơn giá"].Value.ToString() +
+                    " |Tổng cộng: " + row.Cells["Tổng cộng"].Value.ToString() + Environment.NewLine;
             }
-            db.SaveChanges();
-            LoadDanhSachBan();
-            datagrid_hoadonban.Rows.Clear();
-            MessageBox.Show("Thanh toán thành công");
+            thongTinHoaDon = thongTinHoaDon + "---------------------------------------" + Environment.NewLine;
+            thongTinHoaDon = thongTinHoaDon + "Tổng cộng :" + labelTongCong.Text;
+            DialogResult dialogResult = MessageBox.Show(thongTinHoaDon, "Thanh toán " + selectedBan.Text + ", bạn có muốn thanh toán hay không", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //do something
+                foreach (var item in db.HoaDonBans)
+                {
+                    if (item.idBanbida == idBan && item.TinhTrang == "đang hoạt động")
+                    {
+                        HoaDonBan hoadon = item;
+                        hoadon.TinhTrang = "đã thanh toán";
+                        hoadon.TienGio = (DateTime.Now - hoadon.NgayBan).Value.TotalMinutes * (25000 / 60);
+                        hoadon.TongTien = int.Parse(lbTongtien.Text);
+                        db.Entry(hoadon).State = EntityState.Modified;
+                        BanBida banmoi = db.BanBidas.Find(idBan);
+                        banmoi.TinhTrang = "";
+                        db.Entry(banmoi).State = EntityState.Modified;
+                    }
+                }
+                db.SaveChanges();
+                LoadDanhSachBan();
+                thietLapLaiHoaDon();
+                MessageBox.Show("Đã thanh toán thành công !", "Thông báo !");
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+
+
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
         }
     }
 }

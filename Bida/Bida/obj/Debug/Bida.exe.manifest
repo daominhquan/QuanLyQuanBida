@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bida.exe" size="69080">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bida.exe" size="71640">
       <assemblyIdentity name="Bida" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>RlLcIEIty8B8NiqYcu8kMfjoqMkuYeo1sAZhKFJ6fxE=</dsig:DigestValue>
+        <dsig:DigestValue>Ucz560KLMTOZSI0Z5hpghmOvGctsJFEi6dMdw4ycCoE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
