@@ -491,10 +491,7 @@ namespace Bida
             }
             else
             {
-                if (panelSanPham.Size.Width % 45 == 0)
-                {
-                    LoadDanhSachSanPham();
-                }
+                LoadDanhSachSanPham();
             }
         }
 
@@ -547,19 +544,23 @@ namespace Bida
 
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
+        private void btnCloseApp_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult dialogResult = MessageBox.Show( "Bạn có muốn đóng chương trình hay không ?", "Xác nhận", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnMaximized_Click(object sender, EventArgs e)
+        {
+            this.WindowState = this.WindowState == System.Windows.Forms.FormWindowState.Maximized ? System.Windows.Forms.FormWindowState.Normal : System.Windows.Forms.FormWindowState.Maximized;
+        }
+
+        private void btnMinimized_Click(object sender, EventArgs e)
         {
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
         }
     }
 }
