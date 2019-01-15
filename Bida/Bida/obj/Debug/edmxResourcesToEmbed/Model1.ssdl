@@ -25,6 +25,7 @@
     <Property Name="BanBidaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenBanBida" Type="nvarchar(max)" />
     <Property Name="TinhTrang" Type="nvarchar(max)" />
+    <Property Name="isDelete" Type="bit" />
   </EntityType>
   <EntityType Name="ChiTietHoaDonBan">
     <Key>
@@ -34,6 +35,7 @@
     <Property Name="IdHoaDonBan" Type="int" />
     <Property Name="IdSanPham" Type="int" />
     <Property Name="Soluong" Type="int" />
+    <Property Name="isDelete" Type="bit" />
   </EntityType>
   <EntityType Name="HoaDonBan">
     <Key>
@@ -45,6 +47,7 @@
     <Property Name="NgayBan" Type="datetime" />
     <Property Name="TienGio" Type="float" />
     <Property Name="TinhTrang" Type="nvarchar" MaxLength="50" />
+    <Property Name="isDelete" Type="bit" />
   </EntityType>
   <EntityType Name="SanPhams">
     <Key>
@@ -55,6 +58,7 @@
     <Property Name="GiaTien" Type="nchar" MaxLength="10" />
     <Property Name="Soluong" Type="int" />
     <Property Name="HinhAnh" Type="nvarchar(max)" />
+    <Property Name="isDelete" Type="bit" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

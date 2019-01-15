@@ -42,8 +42,6 @@ namespace Bida
             datagrid_hoadonban.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             datagrid_hoadonban.Columns[4].Visible = false;
             datagrid_hoadonban.Columns[5].Name = "Tổng cộng";
-
-
             datagrid_hoadonban.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
         }
@@ -189,7 +187,7 @@ namespace Bida
         public void LoadDanhSachSanPham()
         {
             db = new CodeFirstDBEntities();
-            panelSanPham.Controls.Clear();
+            fpanelSanPham.Controls.Clear();
             int top = 40;
             int left = 0;
             int index = 0;
@@ -201,7 +199,7 @@ namespace Bida
                 newButton.Location = new Point(left, top);
                 newButton.Text = item.TenSanPham;
                 newButton.Name = "btn_Ban_" + item.SanPhamId;
-                newButton.Size = new Size(90, 90);
+                newButton.Size = new Size(150, 150);
                 if (item.HinhAnh != null && item.HinhAnh != "")
                 {
                     //string startupPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Picture\\hinhbanbida.jpg";
@@ -216,26 +214,9 @@ namespace Bida
                 newButton.FlatStyle = FlatStyle.Flat;
                 newButton.FlatAppearance.BorderSize = 0;
                 newButton.Click += btnSanPham_Click;
-
-                index++;
-                left = left + 90;
-                //if (index % 5 == 0)
-                //{
-                //    top = top + 100;
-                //    left = 10;
-                //}
-                if (left + 90 >= panelSanPham.Size.Width)
-                {
-                    top = top + 100;
-                    left = 0;
-                }
-                panelSanPham.Controls.Add(newButton);
+                fpanelSanPham.Controls.Add(newButton);
             }
-            panelSanPham.AutoScroll = false;
-            panelSanPham.HorizontalScroll.Enabled = false;
-            panelSanPham.HorizontalScroll.Visible = false;
-            panelSanPham.HorizontalScroll.Maximum = 0;
-            panelSanPham.AutoScroll = true;
+
         }
 
 
@@ -270,7 +251,7 @@ namespace Bida
             {
                 if (item.BackColor == SystemColors.Highlight)
                 {
-                    item.BackColor = SystemColors.Control;
+                    item.BackColor = btn.BackColor;
                 }
             }
             btn.BackColor = SystemColors.Highlight;
@@ -286,7 +267,7 @@ namespace Bida
             Button btn = sender as Button;
             btnSuaSanPham.Enabled = true;
             selectedSanPham = btn;
-            foreach (Button item in panelSanPham.Controls)
+            foreach (Button item in fpanelSanPham.Controls)
             {
                 if (item.BackColor == SystemColors.Highlight)
                 {
@@ -372,7 +353,7 @@ namespace Bida
             idsanpham = int.Parse(selectedSanPham.Name.Split('_')[2]);
             SuaSanPham frm = new SuaSanPham();
             frm.ShowDialog();
-            panelSanPham.Controls.Clear();
+            fpanelSanPham.Controls.Clear();
             LoadDanhSachSanPham();
         }
 
@@ -483,18 +464,6 @@ namespace Bida
             btnThanhToan.Enabled = false;
         }
 
-        private void panelSanPham_SizeChanged(object sender, EventArgs e)
-        {
-            if (this.WindowState == System.Windows.Forms.FormWindowState.Maximized)
-            {
-                LoadDanhSachSanPham();
-            }
-            else
-            {
-                LoadDanhSachSanPham();
-            }
-        }
-
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
             if (selectedBan == null)
@@ -546,7 +515,7 @@ namespace Bida
 
         private void btnCloseApp_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show( "Bạn có muốn đóng chương trình hay không ?", "Xác nhận", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Bạn có muốn đóng chương trình hay không ?", "Xác nhận", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 Application.Exit();
@@ -562,5 +531,67 @@ namespace Bida
         {
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
         }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Button item = sender as Button;
+            if (item.Name == "btnKichThuoc1")
+            {
+                foreach (Button btn in fpanelSanPham.Controls)
+                {
+                    btn.Size = new Size(90, 90);
+                }
+            }
+            else if (item.Name == "btnKichThuoc2")
+            {
+                foreach (Button btn in fpanelSanPham.Controls)
+                {
+                    btn.Size = new Size(110, 110);
+                }
+            }
+            else if (item.Name == "btnKichThuoc3")
+            {
+                foreach (Button btn in fpanelSanPham.Controls)
+                {
+                    btn.Size = new Size(140, 140);
+                }
+            }
+
+        }
+
+        private void btnXoaSanPham_Click(object sender, EventArgs e)
+        {
+
+            SanPham sanpham = db.SanPhams.Find(idsanpham);
+            if (sanpham != null)
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa " + sanpham.TenSanPham + " không ?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    sanpham.isDelete = true;
+                    db.Entry(sanpham).State = EntityState.Modified;
+                    db.SaveChanges();
+                    LoadDanhSachSanPham();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chưa chọn sản phẩm");
+            }
+        }
+
+        private void btnPlayMusic_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "file mp3 (*.mp3)|*.mp3|file lossless (*.flac)|*.mp3|tất cả (*.*)|*.*";
+            DialogResult ret = dlg.ShowDialog();
+            if (ret == DialogResult.OK)
+            {
+                axWindowsMediaPlayer1.URL = dlg.FileName;
+
+            }
+
+        }
+        
     }
 }

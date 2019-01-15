@@ -26,6 +26,7 @@ namespace Bida
         public Nullable<System.DateTime> NgayBan { get; set; }
         public Nullable<double> TienGio { get; set; }
         public string TinhTrang { get; set; }
+        public Nullable<bool> isDelete { get; set; }
     
         public virtual BanBida BanBida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

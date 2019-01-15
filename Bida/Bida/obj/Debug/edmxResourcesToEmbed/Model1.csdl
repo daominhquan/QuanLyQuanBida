@@ -88,6 +88,7 @@
     <Property Name="TenBanBida" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="TinhTrang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="HoaDonBans" Relationship="CodeFirstDBModel.FK_HoaDonBan_BanBida" FromRole="BanBida" ToRole="HoaDonBan" />
+    <Property Name="isDelete" Type="Boolean" />
   </EntityType>
   <EntityType Name="ChiTietHoaDonBan">
     <Key>
@@ -99,6 +100,7 @@
     <Property Name="Soluong" Type="Int32" />
     <NavigationProperty Name="HoaDonBan" Relationship="CodeFirstDBModel.FK_ChiTietHoaDonBan_HoaDonBan" FromRole="ChiTietHoaDonBan" ToRole="HoaDonBan" />
     <NavigationProperty Name="SanPham" Relationship="CodeFirstDBModel.FK_ChiTietHoaDonBan_SanPhams" FromRole="ChiTietHoaDonBan" ToRole="SanPham" />
+    <Property Name="isDelete" Type="Boolean" />
   </EntityType>
   <EntityType Name="HoaDonBan">
     <Key>
@@ -112,6 +114,7 @@
     <Property Name="TinhTrang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="BanBida" Relationship="CodeFirstDBModel.FK_HoaDonBan_BanBida" FromRole="HoaDonBan" ToRole="BanBida" />
     <NavigationProperty Name="ChiTietHoaDonBans" Relationship="CodeFirstDBModel.FK_ChiTietHoaDonBan_HoaDonBan" FromRole="HoaDonBan" ToRole="ChiTietHoaDonBan" />
+    <Property Name="isDelete" Type="Boolean" />
   </EntityType>
   <EntityType Name="SanPham">
     <Key>
@@ -123,6 +126,7 @@
     <Property Name="Soluong" Type="Int32" />
     <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ChiTietHoaDonBans" Relationship="CodeFirstDBModel.FK_ChiTietHoaDonBan_SanPhams" FromRole="SanPham" ToRole="ChiTietHoaDonBan" />
+    <Property Name="isDelete" Type="Boolean" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>

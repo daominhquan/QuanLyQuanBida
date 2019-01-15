@@ -28,28 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtSoLuong = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.txtUrlHinh = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtGiaTien = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtTenSanPham = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtGiaTien = new System.Windows.Forms.NumericUpDown();
+            this.txtSoLuong = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGiaTien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSoLuong)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtSoLuong
-            // 
-            this.txtSoLuong.Location = new System.Drawing.Point(12, 108);
-            this.txtSoLuong.Name = "txtSoLuong";
-            this.txtSoLuong.Size = new System.Drawing.Size(202, 20);
-            this.txtSoLuong.TabIndex = 19;
             // 
             // button1
             // 
@@ -106,13 +101,6 @@
             this.label5.TabIndex = 18;
             this.label5.Text = "Số lượng";
             // 
-            // txtGiaTien
-            // 
-            this.txtGiaTien.Location = new System.Drawing.Point(12, 65);
-            this.txtGiaTien.Name = "txtGiaTien";
-            this.txtGiaTien.Size = new System.Drawing.Size(202, 20);
-            this.txtGiaTien.TabIndex = 17;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -147,18 +135,32 @@
             this.panel1.Size = new System.Drawing.Size(301, 44);
             this.panel1.TabIndex = 13;
             // 
+            // txtGiaTien
+            // 
+            this.txtGiaTien.Location = new System.Drawing.Point(12, 65);
+            this.txtGiaTien.Name = "txtGiaTien";
+            this.txtGiaTien.Size = new System.Drawing.Size(120, 20);
+            this.txtGiaTien.TabIndex = 24;
+            // 
+            // txtSoLuong
+            // 
+            this.txtSoLuong.Location = new System.Drawing.Point(12, 108);
+            this.txtSoLuong.Name = "txtSoLuong";
+            this.txtSoLuong.Size = new System.Drawing.Size(120, 20);
+            this.txtSoLuong.TabIndex = 25;
+            // 
             // SuaSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(301, 207);
             this.Controls.Add(this.txtSoLuong);
+            this.Controls.Add(this.txtGiaTien);
             this.Controls.Add(this.txtUrlHinh);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtGiaTien);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtTenSanPham);
             this.Controls.Add(this.label1);
@@ -169,24 +171,25 @@
             this.Load += new System.EventHandler(this.SuaSanPham_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtGiaTien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSoLuong)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtSoLuong;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txtUrlHinh;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtGiaTien;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtTenSanPham;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.NumericUpDown txtGiaTien;
+        private System.Windows.Forms.NumericUpDown txtSoLuong;
     }
 }

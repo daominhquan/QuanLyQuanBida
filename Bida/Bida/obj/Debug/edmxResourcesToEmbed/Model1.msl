@@ -47,6 +47,7 @@
     <EntitySetMapping Name="BanBidas">
       <EntityTypeMapping TypeName="CodeFirstDBModel.BanBida">
         <MappingFragment StoreEntitySet="BanBida">
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
           <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
           <ScalarProperty Name="TenBanBida" ColumnName="TenBanBida" />
           <ScalarProperty Name="BanBidaId" ColumnName="BanBidaId" />
@@ -56,6 +57,7 @@
     <EntitySetMapping Name="ChiTietHoaDonBans">
       <EntityTypeMapping TypeName="CodeFirstDBModel.ChiTietHoaDonBan">
         <MappingFragment StoreEntitySet="ChiTietHoaDonBan">
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
           <ScalarProperty Name="Soluong" ColumnName="Soluong" />
           <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
           <ScalarProperty Name="IdHoaDonBan" ColumnName="IdHoaDonBan" />
@@ -66,6 +68,7 @@
     <EntitySetMapping Name="HoaDonBans">
       <EntityTypeMapping TypeName="CodeFirstDBModel.HoaDonBan">
         <MappingFragment StoreEntitySet="HoaDonBan">
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
           <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
           <ScalarProperty Name="TienGio" ColumnName="TienGio" />
           <ScalarProperty Name="NgayBan" ColumnName="NgayBan" />
@@ -78,6 +81,7 @@
     <EntitySetMapping Name="SanPhams">
       <EntityTypeMapping TypeName="CodeFirstDBModel.SanPham">
         <MappingFragment StoreEntitySet="SanPhams">
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
           <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
           <ScalarProperty Name="Soluong" ColumnName="Soluong" />
           <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />

@@ -18,6 +18,7 @@ namespace Bida
         public Nullable<int> IdHoaDonBan { get; set; }
         public Nullable<int> IdSanPham { get; set; }
         public Nullable<int> Soluong { get; set; }
+        public Nullable<bool> isDelete { get; set; }
     
         public virtual HoaDonBan HoaDonBan { get; set; }
         public virtual SanPham SanPham { get; set; }

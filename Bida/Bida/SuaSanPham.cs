@@ -18,6 +18,8 @@ namespace Bida
         public SuaSanPham()
         {
             InitializeComponent();
+            txtGiaTien.Maximum = int.MaxValue;
+            txtSoLuong.Maximum = int.MaxValue;
         }
 
         private void SuaSanPham_Load(object sender, EventArgs e)

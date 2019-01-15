@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDanhSachBan));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panelQuanLyBida = new System.Windows.Forms.Panel();
             this.panelMain = new System.Windows.Forms.Panel();
@@ -35,18 +36,24 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panelSanPham = new System.Windows.Forms.Panel();
+            this.fpanelSanPham = new System.Windows.Forms.FlowLayoutPanel();
             this.panelHoaDon = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.lbTongtien = new System.Windows.Forms.Label();
-            this.datagrid_hoadonban = new System.Windows.Forms.DataGridView();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.lbTenBan = new System.Windows.Forms.Label();
-            this.btnThanhToan = new System.Windows.Forms.Button();
-            this.btnLuuHoaDon = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lbTieudeTenBan = new System.Windows.Forms.Label();
-            this.labelTongCong = new System.Windows.Forms.Label();
+            this.lbTenBan = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnThanhToan = new System.Windows.Forms.Button();
+            this.labelTongCong = new System.Windows.Forms.Label();
+            this.btnLuuHoaDon = new System.Windows.Forms.Button();
+            this.lbTongtien = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.datagrid_hoadonban = new System.Windows.Forms.DataGridView();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.btnXoaSanPham = new System.Windows.Forms.Button();
+            this.btnKichThuoc3 = new System.Windows.Forms.Button();
+            this.btnKichThuoc2 = new System.Windows.Forms.Button();
+            this.btnKichThuoc1 = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.btnMinimized = new System.Windows.Forms.Button();
             this.btnCloseApp = new System.Windows.Forms.Button();
@@ -54,25 +61,30 @@
             this.button4 = new System.Windows.Forms.Button();
             this.btnSuaSanPham = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panelDanhSachBan = new System.Windows.Forms.FlowLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.panelDanhSachBan = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnPlayMusic = new System.Windows.Forms.Button();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.panelQuanLyBida.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.panelSanPham.SuspendLayout();
             this.panelHoaDon.SuspendLayout();
             this.panel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datagrid_hoadonban)).BeginInit();
+            this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datagrid_hoadonban)).BeginInit();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -135,11 +147,21 @@
             // 
             // panelSanPham
             // 
+            this.panelSanPham.Controls.Add(this.fpanelSanPham);
             this.panelSanPham.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSanPham.Location = new System.Drawing.Point(0, 0);
             this.panelSanPham.Name = "panelSanPham";
             this.panelSanPham.Size = new System.Drawing.Size(535, 728);
             this.panelSanPham.TabIndex = 7;
+            // 
+            // fpanelSanPham
+            // 
+            this.fpanelSanPham.AutoScroll = true;
+            this.fpanelSanPham.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fpanelSanPham.Location = new System.Drawing.Point(0, 0);
+            this.fpanelSanPham.Name = "fpanelSanPham";
+            this.fpanelSanPham.Size = new System.Drawing.Size(535, 728);
+            this.fpanelSanPham.TabIndex = 0;
             // 
             // panelHoaDon
             // 
@@ -153,6 +175,7 @@
             // 
             // panel11
             // 
+            this.panel11.Controls.Add(this.panel2);
             this.panel11.Controls.Add(this.panel1);
             this.panel11.Controls.Add(this.lbTongtien);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -160,6 +183,79 @@
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(403, 444);
             this.panel11.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbTieudeTenBan);
+            this.panel1.Controls.Add(this.lbTenBan);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.btnThanhToan);
+            this.panel1.Controls.Add(this.labelTongCong);
+            this.panel1.Controls.Add(this.btnLuuHoaDon);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(403, 77);
+            this.panel1.TabIndex = 15;
+            // 
+            // lbTieudeTenBan
+            // 
+            this.lbTieudeTenBan.AutoSize = true;
+            this.lbTieudeTenBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTieudeTenBan.Location = new System.Drawing.Point(30, 16);
+            this.lbTieudeTenBan.Name = "lbTieudeTenBan";
+            this.lbTieudeTenBan.Size = new System.Drawing.Size(75, 20);
+            this.lbTieudeTenBan.TabIndex = 13;
+            this.lbTieudeTenBan.Text = "Tên bàn: ";
+            // 
+            // lbTenBan
+            // 
+            this.lbTenBan.AutoSize = true;
+            this.lbTenBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTenBan.Location = new System.Drawing.Point(111, 16);
+            this.lbTenBan.Name = "lbTenBan";
+            this.lbTenBan.Size = new System.Drawing.Size(18, 20);
+            this.lbTenBan.TabIndex = 14;
+            this.lbTenBan.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(21, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Tổng cộng";
+            // 
+            // btnThanhToan
+            // 
+            this.btnThanhToan.Location = new System.Drawing.Point(188, 16);
+            this.btnThanhToan.Name = "btnThanhToan";
+            this.btnThanhToan.Size = new System.Drawing.Size(92, 43);
+            this.btnThanhToan.TabIndex = 9;
+            this.btnThanhToan.Text = "thanh toán";
+            this.btnThanhToan.UseVisualStyleBackColor = true;
+            // 
+            // labelTongCong
+            // 
+            this.labelTongCong.AutoSize = true;
+            this.labelTongCong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTongCong.Location = new System.Drawing.Point(111, 39);
+            this.labelTongCong.Name = "labelTongCong";
+            this.labelTongCong.Size = new System.Drawing.Size(18, 20);
+            this.labelTongCong.TabIndex = 12;
+            this.labelTongCong.Text = "0";
+            // 
+            // btnLuuHoaDon
+            // 
+            this.btnLuuHoaDon.Location = new System.Drawing.Point(290, 16);
+            this.btnLuuHoaDon.Name = "btnLuuHoaDon";
+            this.btnLuuHoaDon.Size = new System.Drawing.Size(92, 43);
+            this.btnLuuHoaDon.TabIndex = 8;
+            this.btnLuuHoaDon.Text = "Lưu ";
+            this.btnLuuHoaDon.UseVisualStyleBackColor = true;
+            this.btnLuuHoaDon.Click += new System.EventHandler(this.btnLuuHoaDon_Click);
             // 
             // lbTongtien
             // 
@@ -170,6 +266,15 @@
             this.lbTongtien.TabIndex = 11;
             this.lbTongtien.Text = "0";
             this.lbTongtien.Visible = false;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.datagrid_hoadonban);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(0, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(403, 284);
+            this.panel9.TabIndex = 4;
             // 
             // datagrid_hoadonban
             // 
@@ -189,76 +294,12 @@
             this.datagrid_hoadonban.Size = new System.Drawing.Size(403, 284);
             this.datagrid_hoadonban.TabIndex = 3;
             // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.datagrid_hoadonban);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(0, 0);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(403, 284);
-            this.panel9.TabIndex = 4;
-            // 
-            // lbTenBan
-            // 
-            this.lbTenBan.AutoSize = true;
-            this.lbTenBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTenBan.Location = new System.Drawing.Point(111, 16);
-            this.lbTenBan.Name = "lbTenBan";
-            this.lbTenBan.Size = new System.Drawing.Size(18, 20);
-            this.lbTenBan.TabIndex = 14;
-            this.lbTenBan.Text = "0";
-            // 
-            // btnThanhToan
-            // 
-            this.btnThanhToan.Location = new System.Drawing.Point(188, 16);
-            this.btnThanhToan.Name = "btnThanhToan";
-            this.btnThanhToan.Size = new System.Drawing.Size(92, 43);
-            this.btnThanhToan.TabIndex = 9;
-            this.btnThanhToan.Text = "thanh toán";
-            this.btnThanhToan.UseVisualStyleBackColor = true;
-            // 
-            // btnLuuHoaDon
-            // 
-            this.btnLuuHoaDon.Location = new System.Drawing.Point(290, 16);
-            this.btnLuuHoaDon.Name = "btnLuuHoaDon";
-            this.btnLuuHoaDon.Size = new System.Drawing.Size(92, 43);
-            this.btnLuuHoaDon.TabIndex = 8;
-            this.btnLuuHoaDon.Text = "Lưu ";
-            this.btnLuuHoaDon.UseVisualStyleBackColor = true;
-            this.btnLuuHoaDon.Click += new System.EventHandler(this.btnLuuHoaDon_Click);
-            // 
-            // lbTieudeTenBan
-            // 
-            this.lbTieudeTenBan.AutoSize = true;
-            this.lbTieudeTenBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTieudeTenBan.Location = new System.Drawing.Point(30, 16);
-            this.lbTieudeTenBan.Name = "lbTieudeTenBan";
-            this.lbTieudeTenBan.Size = new System.Drawing.Size(75, 20);
-            this.lbTieudeTenBan.TabIndex = 13;
-            this.lbTieudeTenBan.Text = "Tên bàn: ";
-            // 
-            // labelTongCong
-            // 
-            this.labelTongCong.AutoSize = true;
-            this.labelTongCong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTongCong.Location = new System.Drawing.Point(111, 39);
-            this.labelTongCong.Name = "labelTongCong";
-            this.labelTongCong.Size = new System.Drawing.Size(18, 20);
-            this.labelTongCong.TabIndex = 12;
-            this.labelTongCong.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(21, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 20);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Tổng cộng";
-            // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.btnXoaSanPham);
+            this.panel7.Controls.Add(this.btnKichThuoc3);
+            this.panel7.Controls.Add(this.btnKichThuoc2);
+            this.panel7.Controls.Add(this.btnKichThuoc1);
             this.panel7.Controls.Add(this.panel8);
             this.panel7.Controls.Add(this.button4);
             this.panel7.Controls.Add(this.btnSuaSanPham);
@@ -267,6 +308,47 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(938, 50);
             this.panel7.TabIndex = 6;
+            // 
+            // btnXoaSanPham
+            // 
+            this.btnXoaSanPham.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnXoaSanPham.Location = new System.Drawing.Point(160, 0);
+            this.btnXoaSanPham.Name = "btnXoaSanPham";
+            this.btnXoaSanPham.Size = new System.Drawing.Size(75, 50);
+            this.btnXoaSanPham.TabIndex = 15;
+            this.btnXoaSanPham.Text = "Xóa";
+            this.btnXoaSanPham.UseVisualStyleBackColor = true;
+            this.btnXoaSanPham.Click += new System.EventHandler(this.btnXoaSanPham_Click);
+            // 
+            // btnKichThuoc3
+            // 
+            this.btnKichThuoc3.Location = new System.Drawing.Point(470, 7);
+            this.btnKichThuoc3.Name = "btnKichThuoc3";
+            this.btnKichThuoc3.Size = new System.Drawing.Size(41, 36);
+            this.btnKichThuoc3.TabIndex = 14;
+            this.btnKichThuoc3.Text = "x3";
+            this.btnKichThuoc3.UseVisualStyleBackColor = true;
+            this.btnKichThuoc3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
+            // btnKichThuoc2
+            // 
+            this.btnKichThuoc2.Location = new System.Drawing.Point(423, 7);
+            this.btnKichThuoc2.Name = "btnKichThuoc2";
+            this.btnKichThuoc2.Size = new System.Drawing.Size(41, 36);
+            this.btnKichThuoc2.TabIndex = 13;
+            this.btnKichThuoc2.Text = "x2";
+            this.btnKichThuoc2.UseVisualStyleBackColor = true;
+            this.btnKichThuoc2.Click += new System.EventHandler(this.button3_Click_1);
+            // 
+            // btnKichThuoc1
+            // 
+            this.btnKichThuoc1.Location = new System.Drawing.Point(376, 8);
+            this.btnKichThuoc1.Name = "btnKichThuoc1";
+            this.btnKichThuoc1.Size = new System.Drawing.Size(41, 36);
+            this.btnKichThuoc1.TabIndex = 12;
+            this.btnKichThuoc1.Text = "x1";
+            this.btnKichThuoc1.UseVisualStyleBackColor = true;
+            this.btnKichThuoc1.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // panel8
             // 
@@ -284,6 +366,7 @@
             this.btnMinimized.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.btnMinimized.FlatAppearance.BorderSize = 0;
             this.btnMinimized.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimized.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinimized.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.btnMinimized.Location = new System.Drawing.Point(16, 0);
             this.btnMinimized.Name = "btnMinimized";
@@ -298,6 +381,7 @@
             this.btnCloseApp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.btnCloseApp.FlatAppearance.BorderSize = 0;
             this.btnCloseApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCloseApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseApp.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCloseApp.Location = new System.Drawing.Point(112, 0);
             this.btnCloseApp.Name = "btnCloseApp";
@@ -312,6 +396,7 @@
             this.btnMaximized.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.btnMaximized.FlatAppearance.BorderSize = 0;
             this.btnMaximized.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaximized.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMaximized.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.btnMaximized.Location = new System.Drawing.Point(64, 0);
             this.btnMaximized.Name = "btnMaximized";
@@ -330,6 +415,7 @@
             this.button4.TabIndex = 7;
             this.button4.Text = "Thêm";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.btnThemSanPham_Click);
             // 
             // btnSuaSanPham
             // 
@@ -341,6 +427,7 @@
             this.btnSuaSanPham.TabIndex = 6;
             this.btnSuaSanPham.Text = "Sửa";
             this.btnSuaSanPham.UseVisualStyleBackColor = true;
+            this.btnSuaSanPham.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel3
             // 
@@ -351,6 +438,15 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(261, 778);
             this.panel3.TabIndex = 7;
+            // 
+            // panelDanhSachBan
+            // 
+            this.panelDanhSachBan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.panelDanhSachBan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDanhSachBan.Location = new System.Drawing.Point(0, 50);
+            this.panelDanhSachBan.Name = "panelDanhSachBan";
+            this.panelDanhSachBan.Size = new System.Drawing.Size(261, 728);
+            this.panelDanhSachBan.TabIndex = 0;
             // 
             // panel4
             // 
@@ -385,28 +481,34 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
             // 
-            // panelDanhSachBan
+            // panel2
             // 
-            this.panelDanhSachBan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.panelDanhSachBan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDanhSachBan.Location = new System.Drawing.Point(0, 50);
-            this.panelDanhSachBan.Name = "panelDanhSachBan";
-            this.panelDanhSachBan.Size = new System.Drawing.Size(261, 728);
-            this.panelDanhSachBan.TabIndex = 0;
+            this.panel2.Controls.Add(this.axWindowsMediaPlayer1);
+            this.panel2.Controls.Add(this.btnPlayMusic);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 83);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(403, 361);
+            this.panel2.TabIndex = 16;
             // 
-            // panel1
+            // btnPlayMusic
             // 
-            this.panel1.Controls.Add(this.lbTieudeTenBan);
-            this.panel1.Controls.Add(this.lbTenBan);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.btnThanhToan);
-            this.panel1.Controls.Add(this.labelTongCong);
-            this.panel1.Controls.Add(this.btnLuuHoaDon);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(403, 77);
-            this.panel1.TabIndex = 15;
+            this.btnPlayMusic.Location = new System.Drawing.Point(6, 6);
+            this.btnPlayMusic.Name = "btnPlayMusic";
+            this.btnPlayMusic.Size = new System.Drawing.Size(90, 45);
+            this.btnPlayMusic.TabIndex = 0;
+            this.btnPlayMusic.Text = "Play...";
+            this.btnPlayMusic.UseVisualStyleBackColor = true;
+            this.btnPlayMusic.Click += new System.EventHandler(this.btnPlayMusic_Click);
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(6, 57);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(384, 292);
+            this.axWindowsMediaPlayer1.TabIndex = 1;
             // 
             // FormDanhSachBan
             // 
@@ -425,17 +527,20 @@
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
+            this.panelSanPham.ResumeLayout(false);
             this.panelHoaDon.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datagrid_hoadonban)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.datagrid_hoadonban)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -473,5 +578,13 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.FlowLayoutPanel panelDanhSachBan;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.FlowLayoutPanel fpanelSanPham;
+        private System.Windows.Forms.Button btnKichThuoc1;
+        private System.Windows.Forms.Button btnKichThuoc3;
+        private System.Windows.Forms.Button btnKichThuoc2;
+        private System.Windows.Forms.Button btnXoaSanPham;
+        private System.Windows.Forms.Panel panel2;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private System.Windows.Forms.Button btnPlayMusic;
     }
 }

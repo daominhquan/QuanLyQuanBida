@@ -30,6 +30,7 @@
           <Property Name="BanBidaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenBanBida" Type="nvarchar(max)" />
           <Property Name="TinhTrang" Type="nvarchar(max)" />
+          <Property Name="isDelete" Type="bit" />
         </EntityType>
         <EntityType Name="ChiTietHoaDonBan">
           <Key>
@@ -39,6 +40,7 @@
           <Property Name="IdHoaDonBan" Type="int" />
           <Property Name="IdSanPham" Type="int" />
           <Property Name="Soluong" Type="int" />
+          <Property Name="isDelete" Type="bit" />
         </EntityType>
         <EntityType Name="HoaDonBan">
           <Key>
@@ -50,6 +52,7 @@
           <Property Name="NgayBan" Type="datetime" />
           <Property Name="TienGio" Type="float" />
           <Property Name="TinhTrang" Type="nvarchar" MaxLength="50" />
+          <Property Name="isDelete" Type="bit" />
         </EntityType>
         <EntityType Name="SanPhams">
           <Key>
@@ -60,6 +63,7 @@
           <Property Name="GiaTien" Type="nchar" MaxLength="10" />
           <Property Name="Soluong" Type="int" />
           <Property Name="HinhAnh" Type="nvarchar(max)" />
+          <Property Name="isDelete" Type="bit" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -251,6 +255,7 @@
           <Property Name="TenBanBida" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TinhTrang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="HoaDonBans" Relationship="CodeFirstDBModel.FK_HoaDonBan_BanBida" FromRole="BanBida" ToRole="HoaDonBan" />
+          <Property Name="isDelete" Type="Boolean" />
         </EntityType>
         <EntityType Name="ChiTietHoaDonBan">
           <Key>
@@ -262,6 +267,7 @@
           <Property Name="Soluong" Type="Int32" />
           <NavigationProperty Name="HoaDonBan" Relationship="CodeFirstDBModel.FK_ChiTietHoaDonBan_HoaDonBan" FromRole="ChiTietHoaDonBan" ToRole="HoaDonBan" />
           <NavigationProperty Name="SanPham" Relationship="CodeFirstDBModel.FK_ChiTietHoaDonBan_SanPhams" FromRole="ChiTietHoaDonBan" ToRole="SanPham" />
+          <Property Name="isDelete" Type="Boolean" />
         </EntityType>
         <EntityType Name="HoaDonBan">
           <Key>
@@ -275,6 +281,7 @@
           <Property Name="TinhTrang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BanBida" Relationship="CodeFirstDBModel.FK_HoaDonBan_BanBida" FromRole="HoaDonBan" ToRole="BanBida" />
           <NavigationProperty Name="ChiTietHoaDonBans" Relationship="CodeFirstDBModel.FK_ChiTietHoaDonBan_HoaDonBan" FromRole="HoaDonBan" ToRole="ChiTietHoaDonBan" />
+          <Property Name="isDelete" Type="Boolean" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
@@ -286,6 +293,7 @@
           <Property Name="Soluong" Type="Int32" />
           <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChiTietHoaDonBans" Relationship="CodeFirstDBModel.FK_ChiTietHoaDonBan_SanPhams" FromRole="SanPham" ToRole="ChiTietHoaDonBan" />
+          <Property Name="isDelete" Type="Boolean" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -385,6 +393,7 @@
           <EntitySetMapping Name="BanBidas">
             <EntityTypeMapping TypeName="CodeFirstDBModel.BanBida">
               <MappingFragment StoreEntitySet="BanBida">
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
                 <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
                 <ScalarProperty Name="TenBanBida" ColumnName="TenBanBida" />
                 <ScalarProperty Name="BanBidaId" ColumnName="BanBidaId" />
@@ -394,6 +403,7 @@
           <EntitySetMapping Name="ChiTietHoaDonBans">
             <EntityTypeMapping TypeName="CodeFirstDBModel.ChiTietHoaDonBan">
               <MappingFragment StoreEntitySet="ChiTietHoaDonBan">
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
                 <ScalarProperty Name="Soluong" ColumnName="Soluong" />
                 <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
                 <ScalarProperty Name="IdHoaDonBan" ColumnName="IdHoaDonBan" />
@@ -404,6 +414,7 @@
           <EntitySetMapping Name="HoaDonBans">
             <EntityTypeMapping TypeName="CodeFirstDBModel.HoaDonBan">
               <MappingFragment StoreEntitySet="HoaDonBan">
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
                 <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
                 <ScalarProperty Name="TienGio" ColumnName="TienGio" />
                 <ScalarProperty Name="NgayBan" ColumnName="NgayBan" />
@@ -416,6 +427,7 @@
           <EntitySetMapping Name="SanPhams">
             <EntityTypeMapping TypeName="CodeFirstDBModel.SanPham">
               <MappingFragment StoreEntitySet="SanPhams">
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
                 <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
                 <ScalarProperty Name="Soluong" ColumnName="Soluong" />
                 <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />

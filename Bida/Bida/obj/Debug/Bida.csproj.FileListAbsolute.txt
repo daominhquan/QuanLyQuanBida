@@ -40,3 +40,8 @@ C:\SourceCode_GitKraken\QuanLyQuanBida\Bida\Bida\obj\Debug\Bida.application
 C:\SourceCode_GitKraken\QuanLyQuanBida\Bida\Bida\obj\Debug\Bida.csproj.CopyComplete
 C:\SourceCode_GitKraken\QuanLyQuanBida\Bida\Bida\obj\Debug\Bida.exe
 C:\SourceCode_GitKraken\QuanLyQuanBida\Bida\Bida\obj\Debug\Bida.pdb
+C:\SourceCode_GitKraken\QuanLyQuanBida\Bida\Bida\bin\Debug\Interop.WMPLib.dll
+C:\SourceCode_GitKraken\QuanLyQuanBida\Bida\Bida\bin\Debug\AxInterop.WMPLib.dll
+C:\SourceCode_GitKraken\QuanLyQuanBida\Bida\Bida\obj\Debug\Interop.WMPLib.dll
+C:\SourceCode_GitKraken\QuanLyQuanBida\Bida\Bida\obj\Debug\AxInterop.WMPLib.dll
+C:\SourceCode_GitKraken\QuanLyQuanBida\Bida\Bida\obj\Debug\Bida.csproj.ResolveComReference.cache

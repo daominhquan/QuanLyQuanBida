@@ -23,6 +23,7 @@ namespace Bida
         public int BanBidaId { get; set; }
         public string TenBanBida { get; set; }
         public string TinhTrang { get; set; }
+        public Nullable<bool> isDelete { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDonBan> HoaDonBans { get; set; }
