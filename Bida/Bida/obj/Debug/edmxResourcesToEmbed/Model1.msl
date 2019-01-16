@@ -1,103 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="CodeFirstDBModelStoreContainer" CdmEntityContainer="CodeFirstDBEntities">
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="CodeFirstDBModel.Store.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="CodeFirstDBModel.Store.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="CodeFirstDBModel.Store.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="CodeFirstDBModel.Store.sp_helpdiagramdefinition">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="CodeFirstDBModel.sp_helpdiagramdefinition_Result">
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="CodeFirstDBModel.Store.sp_helpdiagrams">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="CodeFirstDBModel.sp_helpdiagrams_Result">
-          <ScalarProperty Name="Database" ColumnName="Database" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Owner" ColumnName="Owner" />
-          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CodeFirstDBModel.Store.sp_renamediagram" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CodeFirstDBModel.Store.sp_upgraddiagrams" />
     <EntitySetMapping Name="C__MigrationHistory">
-      <EntityTypeMapping TypeName="CodeFirstDBModel.C__MigrationHistory">
-        <MappingFragment StoreEntitySet="__MigrationHistory">
-          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-          <ScalarProperty Name="Model" ColumnName="Model" />
-          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+      <EntityTypeMapping TypeName="IsTypeOf(CodeFirstDBModel.C__MigrationHistory)">
+        <MappingFragment StoreEntitySet="C__MigrationHistory">
           <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Accounts">
-      <EntityTypeMapping TypeName="CodeFirstDBModel.Account">
+      <EntityTypeMapping TypeName="IsTypeOf(CodeFirstDBModel.Account)">
         <MappingFragment StoreEntitySet="Accounts">
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="BanBidas">
-      <EntityTypeMapping TypeName="CodeFirstDBModel.BanBida">
-        <MappingFragment StoreEntitySet="BanBida">
-          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
-          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
-          <ScalarProperty Name="TenBanBida" ColumnName="TenBanBida" />
+      <EntityTypeMapping TypeName="IsTypeOf(CodeFirstDBModel.BanBida)">
+        <MappingFragment StoreEntitySet="BanBidas">
           <ScalarProperty Name="BanBidaId" ColumnName="BanBidaId" />
+          <ScalarProperty Name="TenBanBida" ColumnName="TenBanBida" />
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ChiTietHoaDonBans">
-      <EntityTypeMapping TypeName="CodeFirstDBModel.ChiTietHoaDonBan">
-        <MappingFragment StoreEntitySet="ChiTietHoaDonBan">
-          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
-          <ScalarProperty Name="Soluong" ColumnName="Soluong" />
-          <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
-          <ScalarProperty Name="IdHoaDonBan" ColumnName="IdHoaDonBan" />
+      <EntityTypeMapping TypeName="IsTypeOf(CodeFirstDBModel.ChiTietHoaDonBan)">
+        <MappingFragment StoreEntitySet="ChiTietHoaDonBans">
           <ScalarProperty Name="ChiTietHoaDonBanId" ColumnName="ChiTietHoaDonBanId" />
+          <ScalarProperty Name="IdHoaDonBan" ColumnName="IdHoaDonBan" />
+          <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
+          <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HoaDonBans">
-      <EntityTypeMapping TypeName="CodeFirstDBModel.HoaDonBan">
-        <MappingFragment StoreEntitySet="HoaDonBan">
-          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
-          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
-          <ScalarProperty Name="TienGio" ColumnName="TienGio" />
-          <ScalarProperty Name="NgayBan" ColumnName="NgayBan" />
-          <ScalarProperty Name="TongTien" ColumnName="TongTien" />
-          <ScalarProperty Name="idBanbida" ColumnName="idBanbida" />
+      <EntityTypeMapping TypeName="IsTypeOf(CodeFirstDBModel.HoaDonBan)">
+        <MappingFragment StoreEntitySet="HoaDonBans">
           <ScalarProperty Name="HoaDonBanId" ColumnName="HoaDonBanId" />
+          <ScalarProperty Name="idBanbida" ColumnName="idBanbida" />
+          <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+          <ScalarProperty Name="NgayBan" ColumnName="NgayBan" />
+          <ScalarProperty Name="TienGio" ColumnName="TienGio" />
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SanPhams">
-      <EntityTypeMapping TypeName="CodeFirstDBModel.SanPham">
+      <EntityTypeMapping TypeName="IsTypeOf(CodeFirstDBModel.SanPham)">
         <MappingFragment StoreEntitySet="SanPhams">
-          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
-          <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
-          <ScalarProperty Name="Soluong" ColumnName="Soluong" />
-          <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
-          <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
           <ScalarProperty Name="SanPhamId" ColumnName="SanPhamId" />
+          <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+          <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
+          <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+          <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="CodeFirstDBModel.sysdiagram">
+      <EntityTypeMapping TypeName="IsTypeOf(CodeFirstDBModel.sysdiagram)">
         <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="definition" ColumnName="definition" />
-          <ScalarProperty Name="version" ColumnName="version" />
           <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
           <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

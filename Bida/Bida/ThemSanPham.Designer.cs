@@ -32,16 +32,18 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTenSanPham = new System.Windows.Forms.TextBox();
-            this.txtGiaTien = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtSoLuong = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtUrlHinh = new System.Windows.Forms.TextBox();
+            this.txtSoLuong = new System.Windows.Forms.NumericUpDown();
+            this.txtGiaTien = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSoLuong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGiaTien)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -80,13 +82,6 @@
             this.txtTenSanPham.Size = new System.Drawing.Size(202, 20);
             this.txtTenSanPham.TabIndex = 3;
             // 
-            // txtGiaTien
-            // 
-            this.txtGiaTien.Location = new System.Drawing.Point(12, 68);
-            this.txtGiaTien.Name = "txtGiaTien";
-            this.txtGiaTien.Size = new System.Drawing.Size(202, 20);
-            this.txtGiaTien.TabIndex = 5;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -95,13 +90,6 @@
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Giá tiền";
-            // 
-            // txtSoLuong
-            // 
-            this.txtSoLuong.Location = new System.Drawing.Point(12, 111);
-            this.txtSoLuong.Name = "txtSoLuong";
-            this.txtSoLuong.Size = new System.Drawing.Size(202, 20);
-            this.txtSoLuong.TabIndex = 7;
             // 
             // label5
             // 
@@ -133,9 +121,12 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Bida.Properties.Resources.select_none;
             this.pictureBox1.Location = new System.Drawing.Point(220, 52);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(75, 79);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
@@ -146,19 +137,34 @@
             this.txtUrlHinh.Name = "txtUrlHinh";
             this.txtUrlHinh.Size = new System.Drawing.Size(75, 20);
             this.txtUrlHinh.TabIndex = 12;
+            this.txtUrlHinh.Text = "C:\\SourceCode_GitKraken\\QuanLyQuanBida\\Bida\\Bida\\Resources\\select-none.png";
+            // 
+            // txtSoLuong
+            // 
+            this.txtSoLuong.Location = new System.Drawing.Point(15, 111);
+            this.txtSoLuong.Name = "txtSoLuong";
+            this.txtSoLuong.Size = new System.Drawing.Size(120, 20);
+            this.txtSoLuong.TabIndex = 27;
+            // 
+            // txtGiaTien
+            // 
+            this.txtGiaTien.Location = new System.Drawing.Point(15, 68);
+            this.txtGiaTien.Name = "txtGiaTien";
+            this.txtGiaTien.Size = new System.Drawing.Size(120, 20);
+            this.txtGiaTien.TabIndex = 26;
             // 
             // ThemSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(306, 214);
+            this.Controls.Add(this.txtSoLuong);
+            this.Controls.Add(this.txtGiaTien);
             this.Controls.Add(this.txtUrlHinh);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtSoLuong);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtGiaTien);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtTenSanPham);
             this.Controls.Add(this.label1);
@@ -168,6 +174,8 @@
             this.Text = "Thêm Sản phẩm";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSoLuong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGiaTien)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,13 +187,13 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTenSanPham;
-        private System.Windows.Forms.TextBox txtGiaTien;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtSoLuong;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox txtUrlHinh;
+        private System.Windows.Forms.NumericUpDown txtSoLuong;
+        private System.Windows.Forms.NumericUpDown txtGiaTien;
     }
 }

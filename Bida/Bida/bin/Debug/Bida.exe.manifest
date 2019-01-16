@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="Bida.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="Bida.exe" version="1.0.0.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="Bida" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bida.exe" size="77272">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bida.exe" size="129496">
       <assemblyIdentity name="Bida" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>APOa2G/Zb8u6OVb93kPy/VkiKt2BLtrnlOYviTk55Uc=</dsig:DigestValue>
+        <dsig:DigestValue>MdeZ0kf2OuGKwLj8UKKLST8JTXDW6qmRETzhAWUKQSg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -101,13 +101,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Bida.exe.config" size="1533">
+  <file name="Bida.exe.config" size="1323">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>dUAtoWV0Rg6N8y1VsUdyBhx0pgGHF/u7EHMUYs89+8o=</dsig:DigestValue>
+      <dsig:DigestValue>BKOFb5+Y8iL2cV/ddNIlrjt9yg7sRjE/d3k0b7tAsos=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Model1.Context.tt" size="22930">
@@ -117,6 +117,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>iH6jRm/ArXOO/wVogKb8ZOaRJ6DvCC6vOswudwQkDnQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Model1.edmx.sql" size="7031">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>V9MjOO9WKHX18s5Jw9hJ23Bdi3WnWIC6wlzuDqlAvsM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Model1.tt" size="25275">

@@ -43,7 +43,11 @@ namespace Bida
             datagrid_hoadonban.Columns[4].Visible = false;
             datagrid_hoadonban.Columns[5].Name = "Tổng cộng";
             datagrid_hoadonban.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
+            foreach (DataGridViewColumn column in datagrid_hoadonban.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+            fpanelSanPham.Visible = false;
         }
         public void LoadDanhSachBan()
         {
@@ -53,8 +57,6 @@ namespace Bida
             int index = 0;
             foreach (var item in db.BanBidas)
             {
-
-
                 Button newButton = new Button();
                 newButton.Text = item.TenBanBida;
                 newButton.Size = new Size(75, 27);
@@ -169,15 +171,22 @@ namespace Bida
                 datagrid_hoadonban.Rows.Add("", "Tiền giờ", sophut, (25000 / 60), Math.Round(sophut * (25000 / 60) / 1000) * 1000, string.Format("{0:#,##0}", Math.Round(sophut * (25000 / 60) / 1000) * 1000));
                 UpdateTongCongHoaDon();
             }
-
-            foreach (var item in db.ChiTietHoaDonBans)
+            try
             {
-                if (item.HoaDonBan.idBanbida == id && item.HoaDonBan.TinhTrang == "đang hoạt động")
+                foreach (var item in db.ChiTietHoaDonBans)
                 {
-                    datagrid_hoadonban.Rows.Add(item.IdSanPham, item.SanPham.TenSanPham, item.Soluong, item.SanPham.GiaTien, item.Soluong.Value * int.Parse(item.SanPham.GiaTien), string.Format("{0:#,##0}", item.Soluong.Value * int.Parse(item.SanPham.GiaTien)));
-                    index++;
+                    if (item.HoaDonBan.idBanbida == id && item.HoaDonBan.TinhTrang == "đang hoạt động")
+                    {
+                        datagrid_hoadonban.Rows.Add(item.IdSanPham, item.SanPham.TenSanPham, item.Soluong, item.SanPham.GiaTien, item.Soluong.Value * int.Parse(item.SanPham.GiaTien), string.Format("{0:#,##0}", item.Soluong.Value * int.Parse(item.SanPham.GiaTien)));
+                        index++;
+                    }
                 }
             }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("vui lòng cập nhật giá tiền");
+            }
+
             btnLuuHoaDon.Enabled = true;
             UpdateTongCongHoaDon();
 
@@ -190,31 +199,33 @@ namespace Bida
             fpanelSanPham.Controls.Clear();
             int top = 40;
             int left = 0;
-            int index = 0;
             foreach (var item in db.SanPhams)
             {
-                Button newButton = new Button();
-
-                newButton.Size = new Size(75, 27);
-                newButton.Location = new Point(left, top);
-                newButton.Text = item.TenSanPham;
-                newButton.Name = "btn_Ban_" + item.SanPhamId;
-                newButton.Size = new Size(150, 150);
-                if (item.HinhAnh != null && item.HinhAnh != "")
+                if (item.isDelete == null)
                 {
-                    //string startupPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Picture\\hinhbanbida.jpg";
-                    Image myimage = new Bitmap(item.HinhAnh);//tạo biến lưu lại hình ảnh bởi đường dẫn
-                    newButton.BackgroundImage = myimage;//đổi ảnh nền của button 
-                    newButton.BackgroundImageLayout = ImageLayout.Zoom;
-                    Bitmap bm = (Bitmap)newButton.BackgroundImage;
-                    bm.MakeTransparent(bm.GetPixel(0, 0));
+                    Button newButton = new Button();
+                    newButton.Size = new Size(75, 27);
+                    newButton.Location = new Point(left, top);
+                    newButton.Text = item.TenSanPham;
+                    newButton.Name = "btn_Ban_" + item.SanPhamId;
+                    newButton.Size = new Size(150, 150);
+                    if (item.HinhAnh != null && item.HinhAnh != "")
+                    {
+                        //string startupPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Picture\\hinhbanbida.jpg";
+                        Image myimage = new Bitmap(item.HinhAnh);//tạo biến lưu lại hình ảnh bởi đường dẫn
+                        newButton.BackgroundImage = myimage;//đổi ảnh nền của button 
+                        newButton.BackgroundImageLayout = ImageLayout.Zoom;
+                        Bitmap bm = (Bitmap)newButton.BackgroundImage;
+                        bm.MakeTransparent(bm.GetPixel(0, 0));
+                    }
+                    //newButton.BackColor = Color.White;
+                    newButton.ForeColor = Color.Black;
+                    newButton.BackColor = SystemColors.ControlLight;
+                    newButton.FlatStyle = FlatStyle.Flat;
+                    newButton.FlatAppearance.BorderSize = 0;
+                    newButton.Click += btnSanPham_Click;
+                    fpanelSanPham.Controls.Add(newButton);
                 }
-                //newButton.BackColor = Color.White;
-                newButton.ForeColor = Color.Black;
-                newButton.FlatStyle = FlatStyle.Flat;
-                newButton.FlatAppearance.BorderSize = 0;
-                newButton.Click += btnSanPham_Click;
-                fpanelSanPham.Controls.Add(newButton);
             }
 
         }
@@ -256,22 +267,20 @@ namespace Bida
             }
             btn.BackColor = SystemColors.Highlight;
             loadDuLieuBanLenHoaDon(int.Parse(btn.Name.Split('_')[2]));
-            panelMain.Visible = true;
+            fpanelSanPham.Visible = true;
             lbTenBan.Text = btn.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None)[0];
         }
         private void btnSanPham_Click(object sender, EventArgs e)
         {
-
-
-
             Button btn = sender as Button;
             btnSuaSanPham.Enabled = true;
             selectedSanPham = btn;
+            idsanpham = int.Parse(btn.Name.Split('_')[2]);
             foreach (Button item in fpanelSanPham.Controls)
             {
                 if (item.BackColor == SystemColors.Highlight)
                 {
-                    item.BackColor = SystemColors.Control;
+                    item.BackColor = SystemColors.ControlLight;
                 }
             }
             btn.BackColor = SystemColors.Highlight;
@@ -453,6 +462,7 @@ namespace Bida
                 datagrid_hoadonban.Rows.Clear();
                 LoadDanhSachBan();
             }
+            fpanelSanPham.Visible = false;
             thietLapLaiHoaDon();
         }
         public void thietLapLaiHoaDon()
@@ -503,7 +513,9 @@ namespace Bida
                 db.SaveChanges();
                 LoadDanhSachBan();
                 thietLapLaiHoaDon();
+                fpanelSanPham.Visible = false;
                 MessageBox.Show("Đã thanh toán thành công !", "Thông báo !");
+                
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -535,6 +547,7 @@ namespace Bida
         private void button3_Click_1(object sender, EventArgs e)
         {
             Button item = sender as Button;
+            fpanelSanPham.Hide();
             if (item.Name == "btnKichThuoc1")
             {
                 foreach (Button btn in fpanelSanPham.Controls)
@@ -556,12 +569,12 @@ namespace Bida
                     btn.Size = new Size(140, 140);
                 }
             }
+            fpanelSanPham.Show();
 
         }
 
         private void btnXoaSanPham_Click(object sender, EventArgs e)
         {
-
             SanPham sanpham = db.SanPhams.Find(idsanpham);
             if (sanpham != null)
             {
@@ -572,6 +585,7 @@ namespace Bida
                     db.Entry(sanpham).State = EntityState.Modified;
                     db.SaveChanges();
                     LoadDanhSachSanPham();
+                    MessageBox.Show("đã xóa thành công!");
                 }
             }
             else
@@ -592,6 +606,72 @@ namespace Bida
             }
 
         }
-        
+
+        private void datagrid_hoadonban_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    var hti = datagrid_hoadonban.HitTest(e.X, e.Y);
+                    datagrid_hoadonban.ClearSelection();
+                    datagrid_hoadonban.Rows[hti.RowIndex].Selected = true;
+
+                    ContextMenu m = new ContextMenu();
+                    m.MenuItems.Add(new MenuItem("Xóa " + datagrid_hoadonban.Rows[hti.RowIndex].Cells["Tên sản phẩm"].Value));
+                    m.Show(datagrid_hoadonban, new Point(e.X, e.Y));
+                    m.MenuItems[0].Click += DeleteRow_Click;
+                }
+            }
+            catch (ArgumentOutOfRangeException) { }
+
+        }
+
+        private void DeleteRow_Click(object sender, EventArgs e)
+        {
+            Int32 rowToDelete = datagrid_hoadonban.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+            
+            UpdateTongCongHoaDon();
+            ChiTietHoaDonBan chitiet = new ChiTietHoaDonBan();
+            SanPham sp = db.SanPhams.Find(datagrid_hoadonban.Rows[rowToDelete].Cells["ID"].Value);
+            foreach(var item in db.ChiTietHoaDonBans)
+            {
+                if (item.IdSanPham == sp.SanPhamId && item.HoaDonBan.TinhTrang == "đang hoạt động" && item.HoaDonBan.BanBida.BanBidaId == int.Parse(selectedBan.Name.Split('_')[2]))
+                {
+                    item.isDelete = true;
+                    chitiet = item;
+                    break;
+                }
+            }
+            db.ChiTietHoaDonBans.Remove(chitiet);
+            db.SaveChanges();
+            datagrid_hoadonban.Rows.RemoveAt(rowToDelete);
+            datagrid_hoadonban.ClearSelection();
+            
+        }
+
+        private void datagrid_hoadonban_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            datagrid_hoadonban.Rows[e.RowIndex].Cells["Tổng cộng"].Value = int.Parse(datagrid_hoadonban.Rows[e.RowIndex].Cells["Đơn giá"].Value.ToString()) * int.Parse(datagrid_hoadonban.Rows[e.RowIndex].Cells["Số lượng"].Value.ToString());
+        }
+
+        #region di chuyển cửa sổ
+            public const int WM_NCLBUTTONDOWN = 0xA1;
+            public const int HT_CAPTION = 0x2;
+
+            [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+            public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+            [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+            public static extern bool ReleaseCapture();
+
+            private void panel7_MouseDown(object sender, MouseEventArgs e)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    ReleaseCapture();
+                    SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                }
+            }
+        #endregion
     }
 }

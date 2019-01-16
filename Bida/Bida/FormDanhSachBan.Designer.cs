@@ -39,6 +39,9 @@
             this.fpanelSanPham = new System.Windows.Forms.FlowLayoutPanel();
             this.panelHoaDon = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.btnPlayMusic = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbTieudeTenBan = new System.Windows.Forms.Label();
             this.lbTenBan = new System.Windows.Forms.Label();
@@ -58,16 +61,14 @@
             this.btnMinimized = new System.Windows.Forms.Button();
             this.btnCloseApp = new System.Windows.Forms.Button();
             this.btnMaximized = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.btnSuaSanPham = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panelDanhSachBan = new System.Windows.Forms.FlowLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnPlayMusic = new System.Windows.Forms.Button();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.paneltoolSanpham = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             this.panelQuanLyBida.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -76,6 +77,8 @@
             this.panelSanPham.SuspendLayout();
             this.panelHoaDon.SuspendLayout();
             this.panel11.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid_hoadonban)).BeginInit();
@@ -83,8 +86,7 @@
             this.panel8.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+            this.paneltoolSanpham.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -131,9 +133,9 @@
             this.panel6.Controls.Add(this.panel10);
             this.panel6.Controls.Add(this.panelHoaDon);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 50);
+            this.panel6.Location = new System.Drawing.Point(0, 61);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(938, 728);
+            this.panel6.Size = new System.Drawing.Size(938, 717);
             this.panel6.TabIndex = 9;
             // 
             // panel10
@@ -142,7 +144,7 @@
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(0, 0);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(535, 728);
+            this.panel10.Size = new System.Drawing.Size(535, 717);
             this.panel10.TabIndex = 8;
             // 
             // panelSanPham
@@ -151,7 +153,7 @@
             this.panelSanPham.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSanPham.Location = new System.Drawing.Point(0, 0);
             this.panelSanPham.Name = "panelSanPham";
-            this.panelSanPham.Size = new System.Drawing.Size(535, 728);
+            this.panelSanPham.Size = new System.Drawing.Size(535, 717);
             this.panelSanPham.TabIndex = 7;
             // 
             // fpanelSanPham
@@ -160,7 +162,7 @@
             this.fpanelSanPham.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fpanelSanPham.Location = new System.Drawing.Point(0, 0);
             this.fpanelSanPham.Name = "fpanelSanPham";
-            this.fpanelSanPham.Size = new System.Drawing.Size(535, 728);
+            this.fpanelSanPham.Size = new System.Drawing.Size(535, 717);
             this.fpanelSanPham.TabIndex = 0;
             // 
             // panelHoaDon
@@ -170,7 +172,7 @@
             this.panelHoaDon.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelHoaDon.Location = new System.Drawing.Point(535, 0);
             this.panelHoaDon.Name = "panelHoaDon";
-            this.panelHoaDon.Size = new System.Drawing.Size(403, 728);
+            this.panelHoaDon.Size = new System.Drawing.Size(403, 717);
             this.panelHoaDon.TabIndex = 6;
             // 
             // panel11
@@ -181,8 +183,37 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(0, 284);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(403, 444);
+            this.panel11.Size = new System.Drawing.Size(403, 433);
             this.panel11.TabIndex = 5;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.axWindowsMediaPlayer1);
+            this.panel2.Controls.Add(this.btnPlayMusic);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 72);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(403, 361);
+            this.panel2.TabIndex = 16;
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(6, 57);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(384, 292);
+            this.axWindowsMediaPlayer1.TabIndex = 1;
+            // 
+            // btnPlayMusic
+            // 
+            this.btnPlayMusic.Location = new System.Drawing.Point(6, 6);
+            this.btnPlayMusic.Name = "btnPlayMusic";
+            this.btnPlayMusic.Size = new System.Drawing.Size(90, 45);
+            this.btnPlayMusic.TabIndex = 0;
+            this.btnPlayMusic.Text = "Play...";
+            this.btnPlayMusic.UseVisualStyleBackColor = true;
+            this.btnPlayMusic.Click += new System.EventHandler(this.btnPlayMusic_Click);
             // 
             // panel1
             // 
@@ -236,6 +267,7 @@
             this.btnThanhToan.TabIndex = 9;
             this.btnThanhToan.Text = "thanh toán";
             this.btnThanhToan.UseVisualStyleBackColor = true;
+            this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
             // 
             // labelTongCong
             // 
@@ -286,43 +318,43 @@
             this.datagrid_hoadonban.BackgroundColor = System.Drawing.SystemColors.Control;
             this.datagrid_hoadonban.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagrid_hoadonban.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.datagrid_hoadonban.Enabled = false;
             this.datagrid_hoadonban.Location = new System.Drawing.Point(0, 0);
             this.datagrid_hoadonban.Name = "datagrid_hoadonban";
-            this.datagrid_hoadonban.ReadOnly = true;
+            this.datagrid_hoadonban.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.datagrid_hoadonban.RowHeadersVisible = false;
             this.datagrid_hoadonban.Size = new System.Drawing.Size(403, 284);
             this.datagrid_hoadonban.TabIndex = 3;
+            this.datagrid_hoadonban.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagrid_hoadonban_CellValueChanged);
+            this.datagrid_hoadonban.MouseClick += new System.Windows.Forms.MouseEventHandler(this.datagrid_hoadonban_MouseClick);
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.btnXoaSanPham);
-            this.panel7.Controls.Add(this.btnKichThuoc3);
-            this.panel7.Controls.Add(this.btnKichThuoc2);
-            this.panel7.Controls.Add(this.btnKichThuoc1);
+            this.panel7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel7.Controls.Add(this.paneltoolSanpham);
             this.panel7.Controls.Add(this.panel8);
-            this.panel7.Controls.Add(this.button4);
-            this.panel7.Controls.Add(this.btnSuaSanPham);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(938, 50);
+            this.panel7.Size = new System.Drawing.Size(938, 61);
             this.panel7.TabIndex = 6;
+            this.panel7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel7_MouseDown);
             // 
             // btnXoaSanPham
             // 
-            this.btnXoaSanPham.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnXoaSanPham.Location = new System.Drawing.Point(160, 0);
+            this.btnXoaSanPham.BackColor = System.Drawing.Color.Red;
+            this.btnXoaSanPham.FlatAppearance.BorderSize = 0;
+            this.btnXoaSanPham.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXoaSanPham.Image = global::Bida.Properties.Resources.delete_icon;
+            this.btnXoaSanPham.Location = new System.Drawing.Point(118, 4);
             this.btnXoaSanPham.Name = "btnXoaSanPham";
-            this.btnXoaSanPham.Size = new System.Drawing.Size(75, 50);
+            this.btnXoaSanPham.Size = new System.Drawing.Size(50, 50);
             this.btnXoaSanPham.TabIndex = 15;
-            this.btnXoaSanPham.Text = "Xóa";
-            this.btnXoaSanPham.UseVisualStyleBackColor = true;
+            this.btnXoaSanPham.UseVisualStyleBackColor = false;
             this.btnXoaSanPham.Click += new System.EventHandler(this.btnXoaSanPham_Click);
             // 
             // btnKichThuoc3
             // 
-            this.btnKichThuoc3.Location = new System.Drawing.Point(470, 7);
+            this.btnKichThuoc3.Location = new System.Drawing.Point(473, 10);
             this.btnKichThuoc3.Name = "btnKichThuoc3";
             this.btnKichThuoc3.Size = new System.Drawing.Size(41, 36);
             this.btnKichThuoc3.TabIndex = 14;
@@ -332,7 +364,7 @@
             // 
             // btnKichThuoc2
             // 
-            this.btnKichThuoc2.Location = new System.Drawing.Point(423, 7);
+            this.btnKichThuoc2.Location = new System.Drawing.Point(426, 10);
             this.btnKichThuoc2.Name = "btnKichThuoc2";
             this.btnKichThuoc2.Size = new System.Drawing.Size(41, 36);
             this.btnKichThuoc2.TabIndex = 13;
@@ -342,7 +374,7 @@
             // 
             // btnKichThuoc1
             // 
-            this.btnKichThuoc1.Location = new System.Drawing.Point(376, 8);
+            this.btnKichThuoc1.Location = new System.Drawing.Point(379, 11);
             this.btnKichThuoc1.Name = "btnKichThuoc1";
             this.btnKichThuoc1.Size = new System.Drawing.Size(41, 36);
             this.btnKichThuoc1.TabIndex = 12;
@@ -358,7 +390,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel8.Location = new System.Drawing.Point(776, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(162, 50);
+            this.panel8.Size = new System.Drawing.Size(162, 61);
             this.panel8.TabIndex = 11;
             // 
             // btnMinimized
@@ -406,27 +438,18 @@
             this.btnMaximized.UseVisualStyleBackColor = false;
             this.btnMaximized.Click += new System.EventHandler(this.btnMaximized_Click);
             // 
-            // button4
-            // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button4.Location = new System.Drawing.Point(80, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(80, 50);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Thêm";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.btnThemSanPham_Click);
-            // 
             // btnSuaSanPham
             // 
-            this.btnSuaSanPham.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSuaSanPham.BackColor = System.Drawing.Color.DarkOrange;
             this.btnSuaSanPham.Enabled = false;
-            this.btnSuaSanPham.Location = new System.Drawing.Point(0, 0);
+            this.btnSuaSanPham.FlatAppearance.BorderSize = 0;
+            this.btnSuaSanPham.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSuaSanPham.Image = global::Bida.Properties.Resources.edit_icon;
+            this.btnSuaSanPham.Location = new System.Drawing.Point(62, 5);
             this.btnSuaSanPham.Name = "btnSuaSanPham";
-            this.btnSuaSanPham.Size = new System.Drawing.Size(80, 50);
+            this.btnSuaSanPham.Size = new System.Drawing.Size(50, 50);
             this.btnSuaSanPham.TabIndex = 6;
-            this.btnSuaSanPham.Text = "Sửa";
-            this.btnSuaSanPham.UseVisualStyleBackColor = true;
+            this.btnSuaSanPham.UseVisualStyleBackColor = false;
             this.btnSuaSanPham.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel3
@@ -443,9 +466,9 @@
             // 
             this.panelDanhSachBan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.panelDanhSachBan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDanhSachBan.Location = new System.Drawing.Point(0, 50);
+            this.panelDanhSachBan.Location = new System.Drawing.Point(0, 58);
             this.panelDanhSachBan.Name = "panelDanhSachBan";
-            this.panelDanhSachBan.Size = new System.Drawing.Size(261, 728);
+            this.panelDanhSachBan.Size = new System.Drawing.Size(261, 720);
             this.panelDanhSachBan.TabIndex = 0;
             // 
             // panel4
@@ -456,59 +479,60 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(261, 50);
+            this.panel4.Size = new System.Drawing.Size(261, 58);
             this.panel4.TabIndex = 2;
+            this.panel4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel7_MouseDown);
             // 
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Left;
             this.button2.Location = new System.Drawing.Point(80, 0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(80, 50);
+            this.button2.Size = new System.Drawing.Size(80, 58);
             this.button2.TabIndex = 1;
             this.button2.Text = "xóa 1 bàn";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Left;
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 50);
+            this.button1.Size = new System.Drawing.Size(80, 58);
             this.button1.TabIndex = 0;
             this.button1.Text = "thêm 1 bàn";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // panel2
+            // paneltoolSanpham
             // 
-            this.panel2.Controls.Add(this.axWindowsMediaPlayer1);
-            this.panel2.Controls.Add(this.btnPlayMusic);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 83);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(403, 361);
-            this.panel2.TabIndex = 16;
+            this.paneltoolSanpham.Controls.Add(this.btnXoaSanPham);
+            this.paneltoolSanpham.Controls.Add(this.btnSuaSanPham);
+            this.paneltoolSanpham.Controls.Add(this.btnKichThuoc3);
+            this.paneltoolSanpham.Controls.Add(this.button4);
+            this.paneltoolSanpham.Controls.Add(this.btnKichThuoc2);
+            this.paneltoolSanpham.Controls.Add(this.btnKichThuoc1);
+            this.paneltoolSanpham.Dock = System.Windows.Forms.DockStyle.Left;
+            this.paneltoolSanpham.Location = new System.Drawing.Point(0, 0);
+            this.paneltoolSanpham.Name = "paneltoolSanpham";
+            this.paneltoolSanpham.Size = new System.Drawing.Size(610, 61);
+            this.paneltoolSanpham.TabIndex = 16;
             // 
-            // btnPlayMusic
+            // button4
             // 
-            this.btnPlayMusic.Location = new System.Drawing.Point(6, 6);
-            this.btnPlayMusic.Name = "btnPlayMusic";
-            this.btnPlayMusic.Size = new System.Drawing.Size(90, 45);
-            this.btnPlayMusic.TabIndex = 0;
-            this.btnPlayMusic.Text = "Play...";
-            this.btnPlayMusic.UseVisualStyleBackColor = true;
-            this.btnPlayMusic.Click += new System.EventHandler(this.btnPlayMusic_Click);
-            // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(6, 57);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(384, 292);
-            this.axWindowsMediaPlayer1.TabIndex = 1;
+            this.button4.BackColor = System.Drawing.Color.Green;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Image = global::Bida.Properties.Resources.add_icon;
+            this.button4.Location = new System.Drawing.Point(6, 5);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(50, 50);
+            this.button4.TabIndex = 7;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.btnThemSanPham_Click);
             // 
             // FormDanhSachBan
             // 
@@ -531,6 +555,8 @@
             this.panelHoaDon.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel9.ResumeLayout(false);
@@ -539,8 +565,7 @@
             this.panel8.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+            this.paneltoolSanpham.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -586,5 +611,6 @@
         private System.Windows.Forms.Panel panel2;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
         private System.Windows.Forms.Button btnPlayMusic;
+        private System.Windows.Forms.Panel paneltoolSanpham;
     }
 }

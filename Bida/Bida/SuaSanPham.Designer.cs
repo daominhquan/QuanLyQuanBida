@@ -67,6 +67,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.Highlight;
             this.pictureBox1.Location = new System.Drawing.Point(220, 49);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(75, 79);
@@ -167,7 +168,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "SuaSanPham";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SuaSanPham";
+            this.Text = "Sửa sản phẩm";
             this.Load += new System.EventHandler(this.SuaSanPham_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);

@@ -18,47 +18,35 @@ namespace Bida
         public ThemSanPham()
         {
             InitializeComponent();
+            txtGiaTien.Maximum = int.MaxValue;
+            txtSoLuong.Maximum = int.MaxValue;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             foreach(var item in db.SanPhams)
             {
-                if (item.TenSanPham == txtTenSanPham.Text)
+                if (item.TenSanPham == txtTenSanPham.Text && item.isDelete==null)
                 {
                     MessageBox.Show("Tên Sản phẩm đã tồn tại, vui lòng đặt tên khác");
-                    txtTenSanPham.Text = "";
                     return;
                 }
             }
-            SanPham sanpham = new SanPham();
-            sanpham.TenSanPham = txtTenSanPham.Text;
-            
-                
-            int testgiatien;
-            if (int.TryParse(txtGiaTien.Text, out testgiatien))
+            if (txtTenSanPham.Text.Count() > 0)
             {
+                SanPham sanpham = new SanPham();
+                sanpham.TenSanPham = txtTenSanPham.Text;
+                sanpham.HinhAnh = txtUrlHinh.Text;
                 sanpham.GiaTien = txtGiaTien.Text;
-            }
-            else
-            {
-                MessageBox.Show("giá tiền chỉ được nhập số");
-                return;
-            }
-            int testsoluong;
-            if (int.TryParse(txtSoLuong.Text, out testsoluong))
-            {
                 sanpham.Soluong = int.Parse(txtSoLuong.Text);
+                db.SanPhams.Add(sanpham);
+                db.SaveChanges();
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Số lượng chỉ được nhập số");
-                return;
+                MessageBox.Show("vui lòng nhập tên sản phẩm");
             }
-            sanpham.HinhAnh = txtUrlHinh.Text;
-            db.SanPhams.Add(sanpham);
-            db.SaveChanges();
-            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -85,7 +73,7 @@ namespace Bida
                         pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
                         pictureBox1.Size = new Size(90, 90);
                         pictureBox1.Text = startupPath;
-                        MessageBox.Show("đã lưu hình ảnh vào kho hình thành công");
+                        //MessageBox.Show("đã lưu hình ảnh vào kho hình thành công");
                         txtUrlHinh.Text = startupPath + Path.GetFileName(filePath);
                     }
                     else//nếu file đã tồn tại trong thư mục Picture mở hộp thoại thông báo    
@@ -95,11 +83,9 @@ namespace Bida
                         pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
                         pictureBox1.Size = new Size(90, 90);
                         pictureBox1.Text = startupPath;
-                        MessageBox.Show("đã tồn tại , chương trình sẽ sử dụng hình ảnh có tên tương tự");
+                        //MessageBox.Show("đã tồn tại , chương trình sẽ sử dụng hình ảnh có tên tương tự");
                         txtUrlHinh.Text = startupPath + Path.GetFileName(filePath);
                     }
-
-
                 }
             }
 

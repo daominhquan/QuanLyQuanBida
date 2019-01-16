@@ -24,18 +24,25 @@ namespace Bida
 
         private void SuaSanPham_Load(object sender, EventArgs e)
         {
-            SanPham sp = db.SanPhams.Find(FormDanhSachBan.idsanpham);
-            txtTenSanPham.Text = sp.TenSanPham;
-            txtSoLuong.Text = sp.Soluong.ToString();
-            txtGiaTien.Text = sp.GiaTien;
-            if (sp.HinhAnh != null && sp.HinhAnh != "")
+            try
             {
-                txtUrlHinh.Text = sp.HinhAnh;
-                Image myimage = new Bitmap(sp.HinhAnh);//tạo biến lưu lại hình ảnh bởi đường dẫn
-                pictureBox1.BackgroundImage = myimage;//đổi ảnh nền của button 
-                pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+                SanPham sp = db.SanPhams.Find(FormDanhSachBan.idsanpham);
+                txtTenSanPham.Text = sp.TenSanPham;
+                txtSoLuong.Text = sp.Soluong.ToString();
+                txtGiaTien.Text = sp.GiaTien;
+                if (sp.HinhAnh != null && sp.HinhAnh != "")
+                {
+                    txtUrlHinh.Text = sp.HinhAnh;
+                    Image myimage = new Bitmap(sp.HinhAnh);//tạo biến lưu lại hình ảnh bởi đường dẫn
+                    pictureBox1.BackgroundImage = myimage;//đổi ảnh nền của button 
+                    pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+                }
             }
-            
+            catch (Exception)
+            {
+                MessageBox.Show("thao tác vừa làm không hợp lệ");
+                this.Close();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -43,38 +50,17 @@ namespace Bida
             SanPham sanpham = db.SanPhams.Find(FormDanhSachBan.idsanpham);
             foreach (var item in db.SanPhams)
             {
-                if (item.TenSanPham == txtTenSanPham.Text && item.SanPhamId != FormDanhSachBan.idsanpham)
+                if (item.TenSanPham == txtTenSanPham.Text && item.SanPhamId != FormDanhSachBan.idsanpham && item.isDelete == null)
                 {
                     MessageBox.Show("Tên Sản phẩm đã tồn tại, vui lòng đặt tên khác");
-                    txtTenSanPham.Text = "";
+                    txtTenSanPham.Text = sanpham.TenSanPham;
                     return;
                 }
             }
             sanpham.TenSanPham = txtTenSanPham.Text;
-
-
-            int testgiatien;
-            if (int.TryParse(txtGiaTien.Text, out testgiatien))
-            {
-                sanpham.GiaTien = txtGiaTien.Text;
-            }
-            else
-            {
-                MessageBox.Show("giá tiền chỉ được nhập số");
-                return;
-            }
-            int testsoluong;
-            if (int.TryParse(txtSoLuong.Text, out testsoluong))
-            {
-                sanpham.Soluong = int.Parse(txtSoLuong.Text);
-            }
-            else
-            {
-                MessageBox.Show("Số lượng chỉ được nhập số");
-                return;
-            }
+            sanpham.GiaTien = txtGiaTien.Text;
+            sanpham.Soluong = int.Parse(txtSoLuong.Text);
             sanpham.HinhAnh = txtUrlHinh.Text;
-
             db.Entry(sanpham).State = EntityState.Modified;
             db.SaveChanges();
             this.Close();
